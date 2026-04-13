@@ -50,20 +50,20 @@ function html_form($info)
 }
 function html_form_type($typeInfo)
 {
-    $statuts = [
+    $types = [
         "Nourriture",
         "Boisson",
     ];
     $resultat = '';
     $resultat .= '<fieldset>';
     $resultat .= '<legend>Statut</legend>';
-    foreach ($statuts as $i => $statut) {
+    foreach ($types as $i => $type) {
         if ($typeInfo == $i) {
             $resultat .= '<label><input type="radio" name="statut" value="' . $i . '" checked>';
         } else {
             $resultat .= '<label><input type="radio" name="statut" value="' . $i . '">';
         }
-        $resultat .= $statut;
+        $resultat .= $type;
         $resultat .= '</label>';
     }
     $resultat .= '</fieldset>';
