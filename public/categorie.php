@@ -45,31 +45,19 @@
             <article class="card">
                 <h2>Catégories</h2>
                 <p>Catégories des tables (Entrées,vin,dessert,etc.)</p>
-                <a href="categorie.php">Voir la carte</a>
+                <a href="fiche.php">Voir la fiche</a>
             </article>
 
             <article class="card">
-                <h2>Plats</h2>
-                <p>Les plats</p>
-                <a href="#">Voir la carte</a>
+                <h2>Cléopâtre</h2>
+                <p>Reine d'Égypte (-69 – -30)</p>
+                <a href="#">Voir la fiche</a>
             </article>
 
             <article class="card">
-                <h2>Table d'hôte</h2>
-                <p>Les tables d'hôte</p>
-                <a href="#">Voir la carte</a>
-            </article>
-
-            <article class="card">
-                <h2>Boissons</h2>
-                <p>Les Boissons</p>
-                <a href="#">Voir la carte</a>
-            </article>
-
-            <article class="card">
-                <h2>Réservations</h2>
-                <p>Les Réservations</p>
-                <a href="#">Voir la carte</a>
+                <h2>Marie Curie</h2>
+                <p>Physicienne et chimiste (1867–1934)</p>
+                <a href="#">Voir la fiche</a>
             </article>
 
         </div>
