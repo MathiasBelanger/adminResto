@@ -1,78 +1,46 @@
 <?php
-if (isset($_POST['modifier'])) {
-    //traitement
-    //var_dump($_POST);
-    //exit;
-    $id = $_POST['id'];
-    $categorie = $_POST['categorie'];
+if (isset($_POST['ajouter'])) {
+    if(isset($_POST['categorie'])) $categorie = $_POST['categorie'];
+    if(isset($_POST['boisson'])){
+        $boisson = 1;
+    }
+    else{
+        $boisson = 0;
+    }
 
     $pdo = new PDO("sqlite:../../database/db.sqlite");
-    $SQL = "UPDATE categorie SET ";
-    $SQL .= "categorie=:categorie ";
-    $SQL .= "WHERE id=:id";
-    $stmt = $pdo->prepare($SQL);
+    $SQL = "INSERT INTO categorie(categorie, type) VALUES ";
+    $SQL .= "(";
+    $SQL .= ":categorie ,";
+    $SQL .= ":boisson ";
+    $SQL .= ")";
 
-    $stmt->bindParam(":categorie", $categorie);
-    $stmt->bindParam(":id", $id);
-    $stmt->execute();
+    $stmt = $pdo->prepare($SQL);
+    $stmt->execute([':categorie'=>$categorie, ':boisson'=>$boisson]);
     header("location:index.php");
     exit;
 }
 
-if (!isset($_GET['id'])) {
-    header("location:index.php");
-    die; //or exit
-}
-$id = $_GET['id'];
-$bd = "../../database/db.sqlite";
-$pdo = new PDO("sqlite:" . $bd);
-$stmt = $pdo->prepare("SELECT * FROM categorie WHERE id=:id");
-$stmt->execute([':id' => $id]);
-$info = $stmt->fetch();
-
-function html_form($info)
+function html_form()
 {
     $resultat = '';
     $resultat .= '<form action="" method="post" enctype="multipart/form-data">';
-    $resultat .= html_form_categorie($info['categorie']);
+    $resultat .= html_form_categorie();
 
-    $resultat .= '<label><input type="checkbox" required>    Je confirme les modifications</label>';
-    $resultat .= '<input type="hidden" name="id" value="' . $info['id'] . '">';
-    $resultat .= '<input type="hidden" name="modifier">';
-    $resultat .= '<button type="submit">Enregistrer</button>';
+    $resultat .= '<label><input type="checkbox" required>Je confirme la nouvelle catégorie.</label>';
+    $resultat .= '<input type="hidden" name="ajouter">';
+    $resultat .= '<button type="submit">Ajouter</button>';
     $resultat .= '<button type="reset">Réinitialiser</button>';
     $resultat .= '</form>';
 
     return $resultat;
 }
-
-function html_form_type($statutInfo)
-{
-    $statuts = [
-        "Boisson",
-        "Nourriture",
-    ];
-    $resultat = '';
-    $resultat .= '<fieldset>';
-    $resultat .= '<legend>Statut</legend>';
-    foreach ($statuts as $i => $statut) {
-        if ($statutInfo == $i) {
-            $resultat .= '<label><input type="radio" name="statut" value="' . $i . '" checked>';
-        } else {
-            $resultat .= '<label><input type="radio" name="statut" value="' . $i . '">';
-        }
-        $resultat .= $statut;
-        $resultat .= '</label>';
-    }
-    $resultat .= '</fieldset>';
-    return $resultat;
-}
-
-function html_form_categorie($categorie)
+function html_form_categorie()
 {
     $resultat = '';
-    $resultat .= '<label>Catégorie :';
-    $resultat .= '<input type="text" name="categorie" value="' . $categorie . '">';
+    $resultat .= '<label>Nouvelle catégorie :';
+    $resultat .= '<input type="text" name="categorie" value="Nom de la catégorie"';
+    $resultat .= '<input type="checkbox" name="boisson" value="boisson"';
     $resultat .= '</label>';
     return $resultat;
 }
@@ -84,7 +52,7 @@ function html_form_categorie($categorie)
 
 <head>
     <meta charset="UTF-8">
-    <title>Fiche - <?php echo $info['categorie'] ?></title>
+    <title>Fiche - Ajout - Catégorie</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 
@@ -104,16 +72,13 @@ function html_form_categorie($categorie)
 
     <main>
         <section class="content">
-
-            <h1><?php echo $info['categorie'] ?></h1>
-            <h2>Modifier la fiche</h2>
-            <?php echo html_form($info) ?>
+            <h1>Ajouter une catégorie</h1>
+            <?php echo html_form() ?>
         </section>
-
     </main>
 
     <footer>
-        <p>© 2026 Histoire+ - Tous droits réservés</p>
+        <p>© 2026 Categorie+ - Tous droits réservés</p>
     </footer>
 
 </body>
