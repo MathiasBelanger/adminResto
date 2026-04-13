@@ -41,6 +41,7 @@ $collection .= '</div>';
         <h1>Collection de personnages historiques</h1>
 
         <?php echo $collection; ?>
+        <h2>TEST TEST</h2>
         <!--<div class="cards">
 
             <article class="card">
