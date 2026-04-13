@@ -14,7 +14,7 @@ while ($enr = $stmt->fetch()) {
 }
 $categorie .= '</div>';
 $ajout = '';
-$ajout .= '<a href="ajout.php?id=' . $enr['id'] . '">Ajouter une catégorie</a>';
+$ajout .= '<a href="ajout.php">Ajouter une catégorie</a>';
 ?>
 <!DOCTYPE html>
 <html lang="fr">

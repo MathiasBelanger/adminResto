@@ -5,14 +5,16 @@ if (isset($_POST['modifier'])) {
     //exit;
     $id = $_POST['id'];
     $categorie = $_POST['categorie'];
+    $type = $_POST['type'];
 
     $pdo = new PDO("sqlite:../../database/db.sqlite");
     $SQL = "UPDATE categorie SET ";
-    $SQL .= "categorie=:categorie ";
+    $SQL .= "categorie=:categorie, ";
+    $SQL .= "type=:type ";
     $SQL .= "WHERE id=:id";
     $stmt = $pdo->prepare($SQL);
-
     $stmt->bindParam(":categorie", $categorie);
+    $stmt->bindParam(":type", $type);
     $stmt->bindParam(":id", $id);
     $stmt->execute();
     header("location:index.php");
@@ -35,6 +37,7 @@ function html_form($info)
     $resultat = '';
     $resultat .= '<form action="" method="post" enctype="multipart/form-data">';
     $resultat .= html_form_categorie($info['categorie']);
+    $resultat .= html_form_type($info['type']);
 
     $resultat .= '<label><input type="checkbox" required>    Je confirme les modifications</label>';
     $resultat .= '<input type="hidden" name="id" value="' . $info['id'] . '">';
@@ -43,6 +46,27 @@ function html_form($info)
     $resultat .= '<button type="reset">Réinitialiser</button>';
     $resultat .= '</form>';
 
+    return $resultat;
+}
+function html_form_type($typeInfo)
+{
+    $statuts = [
+        "Nourriture",
+        "Boisson",
+    ];
+    $resultat = '';
+    $resultat .= '<fieldset>';
+    $resultat .= '<legend>Statut</legend>';
+    foreach ($statuts as $i => $statut) {
+        if ($typeInfo == $i) {
+            $resultat .= '<label><input type="radio" name="statut" value="' . $i . '" checked>';
+        } else {
+            $resultat .= '<label><input type="radio" name="statut" value="' . $i . '">';
+        }
+        $resultat .= $statut;
+        $resultat .= '</label>';
+    }
+    $resultat .= '</fieldset>';
     return $resultat;
 }
 function html_form_categorie($categorie)

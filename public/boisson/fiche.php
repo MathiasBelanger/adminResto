@@ -6,8 +6,8 @@ if (!isset($_GET['id'])) {
 $id = $_GET['id'];
 $bd = "../../database/db.sqlite";
 $pdo = new PDO("sqlite:" . $bd);
-$stmt = $pdo->prepare("SELECT * FROM boisson WHERE id=:id");
-$stmt->execute([':id' => $id]);
+$stmt = $pdo->prepare("SELECT * FROM boisson");
+$stmt->execute();
 $info = $stmt->fetch();
 $boutton = '';
 $boutton .= '<a href="modifier.php?id=' . $enr['id'] . '">Modifier la fiche</a>';

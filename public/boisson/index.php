@@ -7,7 +7,7 @@ $categorie = '';
 $categorie .= '<div class="cards">';
 while ($enr = $stmt->fetch()) {
     $categorie .= '<article class="card">';
-    $categorie .= '<h2>' . $enr['type'] . ' ' . $enr['nom'] . '</h2>';
+    $categorie .= '<h2>' . $enr['categorie_id'] . ' ' . $enr['nom'] . '</h2>';
     $categorie .= '<a href="fiche.php?id=' . $enr['id'] . '">Voir la fiche</a>';
     $categorie .= '</article>';
 }
