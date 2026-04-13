@@ -1,18 +1,18 @@
 <?php
-$bd = "../database/db.sqlite";
-$pdo = new PDO("sqlite:" . $bd);
-$stmt = $pdo->prepare("SELECT * FROM personnageshistorique");
-$stmt->execute();
-$collection = '';
-$collection .= '<div class="cards">';
-while ($enr = $stmt->fetch()) {
-    $collection .= '<article class="card">';
-    $collection .= '<h2>' . $enr['nom_complet'] . '</h2>';
-    $collection .= '<p>' . $enr['description'] . '</p>';
-    $collection .= '<a href="fiche.php?id=' . $enr['id'] . '">Voir la fiche</a>';
-    $collection .= '</article>';
-}
-$collection .= '</div>';
+// $bd = "../database/db.sqlite";
+// $pdo = new PDO("sqlite:" . $bd);
+// $stmt = $pdo->prepare("SELECT * FROM personnageshistorique");
+// $stmt->execute();
+// $collection = '';
+// $collection .= '<div class="cards">';
+// while ($enr = $stmt->fetch()) {
+//     $collection .= '<article class="card">';
+//     $collection .= '<h2>' . $enr['nom_complet'] . '</h2>';
+//     $collection .= '<p>' . $enr['description'] . '</p>';
+//     $collection .= '<a href="fiche.php?id=' . $enr['id'] . '">Voir la fiche</a>';
+//     $collection .= '</article>';
+// }
+// $collection .= '</div>';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -40,8 +40,7 @@ $collection .= '</div>';
     <main class="home">
         <h1>Collection de personnages historiques</h1>
 
-        <?php echo $collection; ?>
-        <!--<div class="cards">
+        <div class="cards">
 
             <article class="card">
                 <h2>Napoléon Bonaparte</h2>
@@ -61,7 +60,7 @@ $collection .= '</div>';
                 <a href="#">Voir la fiche</a>
             </article>
 
-        </div> -->
+        </div>
 
     </main>
 
