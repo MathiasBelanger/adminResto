@@ -1,4 +1,14 @@
 <?php
+if (isset($_POST['suprimer'])) {
+    $id = $_POST['id'];
+
+    $pdo = new PDO("sqlite:../../database/db.sqlite");
+    $suprimer = "DELETE FROM categorie WHERE id=:id";
+    $stmt = $pdo->prepare($suprimer);
+    $stmt->execute([":id" => $id]);
+    header("location:index.php");
+    exit;
+}
 if (isset($_POST['modifier'])) {
     //traitement
     //var_dump($_POST);
@@ -32,6 +42,13 @@ $stmt = $pdo->prepare("SELECT * FROM categorie WHERE id=:id");
 $stmt->execute([':id' => $id]);
 $info = $stmt->fetch();
 
+$boutton = '<form action="" method="post"';
+$boutton .= '<label><input type="checkbox" required>  Je confirme que je veux suprimer</label>';
+$boutton .= '<input type="hidden" name="id" value="' . $info['id'] . '">';
+$boutton .= '<input type="hidden" name="suprimer">';
+$boutton .= '<button type="submit">Suprimer</button>';
+$boutton .= '</form>';
+
 function html_form($info)
 {
     $resultat = '';
@@ -56,12 +73,12 @@ function html_form_type($typeInfo)
     ];
     $resultat = '';
     $resultat .= '<fieldset>';
-    $resultat .= '<legend>Statut</legend>';
+    $resultat .= '<legend>Types</legend>';
     foreach ($types as $i => $type) {
         if ($typeInfo == $i) {
-            $resultat .= '<label><input type="radio" name="statut" value="' . $i . '" checked>';
+            $resultat .= '<label><input type="radio" name="type" value="' . $i . '" checked>';
         } else {
-            $resultat .= '<label><input type="radio" name="statut" value="' . $i . '">';
+            $resultat .= '<label><input type="radio" name="type" value="' . $i . '">';
         }
         $resultat .= $type;
         $resultat .= '</label>';
@@ -108,7 +125,9 @@ function html_form_categorie($categorie)
             <h1><?php echo $info['categorie'] ?></h1>
             <h2>Modifier la fiche</h2>
             <?php echo html_form($info) ?>
+            <?php echo $boutton ?>
         </section>
+
 
     </main>
 

@@ -6,10 +6,18 @@ $stmt->execute();
 $categorie = '';
 $categorie .= '<div class="cards">';
 while ($enr = $stmt->fetch()) {
+    $types = [
+        "Nourriture",
+        "Boisson",
+    ];
     $categorie .= '<article class="card">';
     $categorie .= '<h2>' . $enr['categorie'] . '</h2>';
+    foreach ($types as $i => $type) {
+        if ($enr['type'] == $i) {
+            $categorie .= '<h4>' . $type . '</h4>';
+        }
+    }
     $categorie .= '<a href="modifier.php?id=' . $enr['id'] . '">Modifier la catégorie</a>';
-    $categorie .= '<a href="ajout.php?id=' . $enr['id'] . '">Supprimer la catégorie</a>';
     $categorie .= '</article>';
 }
 $categorie .= '</div>';
