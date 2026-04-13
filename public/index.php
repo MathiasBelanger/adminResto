@@ -38,38 +38,38 @@
     </header>
 
     <main class="home">
-        <h1>Collection de personnages historiques</h1>
+        <h1>Les tableaux modifiables</h1>
 
         <div class="cards">
 
             <article class="card">
                 <h2>Catégories</h2>
                 <p>Catégories des tables (Entrées,vin,dessert,etc.)</p>
-                <a href="categorie.php">Voir la carte</a>
+                <a href="categorie/index.php">Voir la carte</a>
             </article>
 
             <article class="card">
                 <h2>Plats</h2>
                 <p>Les plats</p>
-                <a href="#">Voir la carte</a>
+                <a href="plat/index.php">Voir la carte</a>
             </article>
 
             <article class="card">
                 <h2>Table d'hôte</h2>
                 <p>Les tables d'hôte</p>
-                <a href="#">Voir la carte</a>
+                <a href="hote/index.php">Voir la carte</a>
             </article>
 
             <article class="card">
                 <h2>Boissons</h2>
                 <p>Les Boissons</p>
-                <a href="#">Voir la carte</a>
+                <a href="boisson/index.php">Voir la carte</a>
             </article>
 
             <article class="card">
                 <h2>Réservations</h2>
                 <p>Les Réservations</p>
-                <a href="#">Voir la carte</a>
+                <a href="reservation/index.php">Voir la carte</a>
             </article>
 
         </div>
