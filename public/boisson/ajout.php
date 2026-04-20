@@ -1,55 +1,50 @@
 <?php
-if (isset($_POST['modifier'])) {
-    //traitement
-    //var_dump($_POST);
-    //exit;
-    $id = $_POST['id'];
-    $boisson = $_POST['boisson'];
+if (isset($_POST['ajouter'])) {
+    if(isset($_POST['origine'])) $origine = $_POST['origine'];
+    if(isset($_POST['nom'])) $nom = $_POST['nom'];
+    if(isset($_POST['extra'])) $extra = $_POST['extra'];
+    if(isset($_POST['anne'])) $anne = $_POST['anne'];
+    if(isset($_POST['prix'])) $prix = $_POST['prix'];
 
     $pdo = new PDO("sqlite:../../database/db.sqlite");
-    $SQL = "UPDATE boisson SET ";
-    $SQL .= "boisson=:boisson ";
-    $SQL .= "WHERE id=:id";
-    $stmt = $pdo->prepare($SQL);
+    $SQL = "INSERT INTO categorie(categorie, type) VALUES ";
+    $SQL .= "(";
+    $SQL .= ":origine ,";
+    $SQL .= ":nom ,";
+    $SQL .= ":extra ,";
+    $SQL .= ":anne ,";
+    $SQL .= ":prix ";
+    $SQL .= ")";
 
-    $stmt->bindParam(":boisson", $boisson);
-    $stmt->bindParam(":id", $id);
-    $stmt->execute();
+    $stmt = $pdo->prepare($SQL);
+    $stmt->execute([':origine'=>$origine, ':nom'=>$nom, ':extra'=>$extra, ':anne'=>$anne, ':prix'=>$prix]);
     header("location:index.php");
     exit;
-}
+} //COMMIT
 
-if (!isset($_GET['id'])) {
-    header("location:index.php");
-    die; //or exit
-}
-$id = $_GET['id'];
-$bd = "../../database/db.sqlite";
-$pdo = new PDO("sqlite:" . $bd);
-$stmt = $pdo->prepare("SELECT * FROM boisson WHERE id=:id");
-$stmt->execute([':id' => $id]);
-$info = $stmt->fetch();
-
-function html_form($info)
+function html_form()
 {
     $resultat = '';
     $resultat .= '<form action="" method="post" enctype="multipart/form-data">';
-    $resultat .= html_form_boisson($info['boisson']);
+    $resultat .= html_form_categorie();
 
-    $resultat .= '<label><input type="checkbox" required>    Je confirme les modifications</label>';
-    $resultat .= '<input type="hidden" name="id" value="' . $info['id'] . '">';
-    $resultat .= '<input type="hidden" name="modifier">';
-    $resultat .= '<button type="submit">Enregistrer</button>';
+    $resultat .= '<label><input type="checkbox" required>Je confirme la nouvelle boisson.</label>';
+    $resultat .= '<input type="hidden" name="ajouter">';
+    $resultat .= '<button type="submit">Ajouter</button>';
     $resultat .= '<button type="reset">Réinitialiser</button>';
     $resultat .= '</form>';
 
     return $resultat;
 }
-function html_form_boisson($boisson)
+function html_form_categorie()
 {
     $resultat = '';
-    $resultat .= '<label>Catégorie :';
-    $resultat .= '<input type="text" name="boisson" value="' . $boisson . '">';
+    $resultat .= '<label>Nouvelle boisson :';
+    $resultat .= '<input type="text" name="origine" value="Origine de la boisson"';
+    $resultat .= '<input type="text" name="nom" value="Nom de la boisson"';
+    $resultat .= '<input type="text" name="extra" value="Données extras"';
+    $resultat .= '<input type="number" name="anne" value="Année de création"';
+    $resultat .= '<input type="number" name="prix" value="Prix de la boisson"';
     $resultat .= '</label>';
     return $resultat;
 }
@@ -61,7 +56,7 @@ function html_form_boisson($boisson)
 
 <head>
     <meta charset="UTF-8">
-    <title>Fiche - <?php echo $info['boisson'] ?></title>
+    <title>Fiche - Ajout - Boisson</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 
@@ -81,16 +76,13 @@ function html_form_boisson($boisson)
 
     <main>
         <section class="content">
-
-            <h1><?php echo $info['boisson'] ?></h1>
-            <h2>Modifier la fiche</h2>
-            <?php echo html_form($info) ?>
+            <h1>Ajouter une boisson</h1>
+            <?php echo html_form() ?>
         </section>
-
     </main>
 
     <footer>
-        <p>© 2026 Histoire+ - Tous droits réservés</p>
+        <p>© 2026 Boisson+ - Tous droits réservés</p>
     </footer>
 
 </body>
