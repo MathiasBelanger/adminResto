@@ -1,12 +1,12 @@
 <?php
-if (isset($_POST['ajouter'])) {
-    if(isset($_POST['categorie'])) $categorie = $_POST['categorie'];
-    if(isset($_POST['type'])){
+include_once("form.php");
+if (isset($_POST['enregistrer'])) {
+    if (isset($_POST['categorie'])) $categorie = $_POST['categorie'];
+    if (isset($_POST['type'])) {
         $type = 1;
-    }
-    else{
+    } else {
         $type = 0;
-    } //COMMIT
+    }
 
     $pdo = new PDO("sqlite:../../database/db.sqlite");
     $SQL = "INSERT INTO categorie(categorie, type) VALUES ";
@@ -16,36 +16,15 @@ if (isset($_POST['ajouter'])) {
     $SQL .= ")";
 
     $stmt = $pdo->prepare($SQL);
-    $stmt->execute([':categorie'=>$categorie, ':type'=>$type]);
+    $stmt->execute([':categorie' => $categorie, ':type' => $type]);
     header("location:index.php");
     exit;
 }
 
-function html_form()
-{
-    $resultat = '';
-    $resultat .= '<form action="" method="post" enctype="multipart/form-data">';
-    $resultat .= html_form_categorie();
-
-    $resultat .= '<label><input type="checkbox" required>Je confirme la nouvelle catégorie.</label>';
-    $resultat .= '<input type="hidden" name="ajouter">';
-    $resultat .= '<button type="submit">Ajouter</button>';
-    $resultat .= '<button type="reset">Réinitialiser</button>';
-    $resultat .= '</form>';
-
-    return $resultat;
-}
-function html_form_categorie()
-{
-    $resultat = '';
-    $resultat .= '<label>Nouvelle catégorie :';
-    $resultat .= '<input type="text" name="categorie" value="Nom de la catégorie"';
-    $resultat .= '<input type="checkbox" name="type" value="type"';
-    $resultat .= '</label>';
-    return $resultat;
-}
-
-
+$bd = "../../database/db.sqlite";
+$pdo = new PDO("sqlite:" . $bd);
+$stmt = $pdo->prepare("SELECT last_insert_rowid();");
+$info = $stmt->fetch();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -73,7 +52,7 @@ function html_form_categorie()
     <main>
         <section class="content">
             <h1>Ajouter une catégorie</h1>
-            <?php echo html_form() ?>
+            <?php echo html_form($info) ?>
         </section>
     </main>
 
