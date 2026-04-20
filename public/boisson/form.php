@@ -32,18 +32,6 @@ function html_form($info = [])
 }
 function html_form_categorie($categorie = "")
 {
-    // $types = [
-    //     "Entrées",
-    //     "Plats principaux - viande",
-    //     "Plats principaux - poissons et fruits de mer",
-    //     "Plats principaux - végétarien",
-    //     "Desserts",
-    //     "vin blanc",
-    //     "vin rouge",
-    //     "vin orange et nature",
-    //     "vin mousseux",
-    //     "spiritueux et digestifs",
-    // ];
     $stmt = execute("SELECT id,categorie from categorie order by categorie",);
     $types = $stmt->fetchAll();
     $resultat = '';
