@@ -8,7 +8,7 @@ $reservation .= '<div class="cards">';
 while ($enr = $stmt->fetch()) {
     $reservation .= '<article class="card">';
     $reservation .= '<h2>' . $enr['nom'] . '</h2>';
-    $reservation .= '<h4>' . $enr['dateReservation'] . '</h4>';
+    $reservation .= '<h4>' . $enr['dateReservation']->format() . '</h4>';
     $reservation .= '<a href="modifier.php?id=' . $enr['id'] . '">Modifier la catégorie</a>';
     $reservation .= '</article>';
 }

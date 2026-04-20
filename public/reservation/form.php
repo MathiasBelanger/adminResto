@@ -35,7 +35,7 @@ function html_form_nbrPersonnes($nbrPersonnes = "")
 {
     $resultat = '';
     $resultat .= '<label>Nombre de personnes :';
-    $resultat .= '<input type="number" name="nbrPersonnes" value="'. $nbrPersonnes .'">';
+    $resultat .= '<input type="number" name="nbrPersonnes" value="' . $nbrPersonnes . '">';
     $resultat .= '</label>';
     return $resultat;
 }
@@ -53,7 +53,7 @@ function html_form_email($email = "")
 {
     $resultat = '';
     $resultat .= '<label>eMail :';
-    $resultat .= '<input type="email" name="email" value="'. $email .'">';
+    $resultat .= '<input type="email" name="email" value="' . $email . '">';
     $resultat .= '</label>';
     return $resultat;
 }
@@ -62,7 +62,7 @@ function html_form_cellulaire($cellulaire = "")
 {
     $resultat = '';
     $resultat .= '<label>Numero de Telephone :';
-    $resultat .= '<input type="tel" name="cellulaire" value="'. $cellulaire .'">';
+    $resultat .= '<input type="tel" name="cellulaire" value="' . $cellulaire . '">';
     $resultat .= '</label>';
     return $resultat;
 }
