@@ -4,7 +4,7 @@ if (isset($_POST['suprimer'])) {
     $id = $_POST['id'];
 
     $pdo = new PDO("sqlite:../../database/db.sqlite");
-    $suprimer = "DELETE FROM categorie WHERE id=:id";
+    $suprimer = "DELETE FROM plat WHERE id=:id";
     $stmt = $pdo->prepare($suprimer);
     $stmt->execute([":id" => $id]);
     header("location:index.php");
@@ -12,17 +12,23 @@ if (isset($_POST['suprimer'])) {
 }
 if (isset($_POST['enregistrer'])) {
     $id = $_POST['id'];
-    $categorie = $_POST['categorie'];
-    $type = $_POST['type'];
+    $nom = $_POST['nom'];
+    $categorie_id = $_POST['categorie_id'];
+    $ingredient = $_POST['ingredient'];
+    $prix = $_POST['prix'];
 
     $pdo = new PDO("sqlite:../../database/db.sqlite");
-    $SQL = "UPDATE categorie SET ";
-    $SQL .= "categorie=:categorie, ";
-    $SQL .= "type=:type ";
+    $SQL = "UPDATE plat SET ";
+    $SQL .= "nom=:nom, ";
+    $SQL .= "categorie_id=:categorie_id, ";
+    $SQL .= "ingredient=:ingredient, ";
+    $SQL .= "prix=:prix ";
     $SQL .= "WHERE id=:id";
     $stmt = $pdo->prepare($SQL);
-    $stmt->bindParam(":categorie", $categorie);
-    $stmt->bindParam(":type", $type);
+    $stmt->bindParam(":nom", $nom);
+    $stmt->bindParam(":categorie_id", $categorie_id);
+    $stmt->bindParam(":ingredient", $ingredient);
+    $stmt->bindParam(":prix", $prix);
     $stmt->bindParam(":id", $id);
     $stmt->execute();
     header("location:index.php");
@@ -34,10 +40,7 @@ if (!isset($_GET['id'])) {
     die; //or exit
 }
 $id = $_GET['id'];
-$bd = "../../database/db.sqlite";
-$pdo = new PDO("sqlite:" . $bd);
-$stmt = $pdo->prepare("SELECT * FROM categorie WHERE id=:id");
-$stmt->execute([':id' => $id]);
+$stmt = execute("SELECT * FROM plat WHERE id=:id", [':id' => $id]);
 $info = $stmt->fetch();
 
 $boutton = '<form action="" method="post"';
@@ -46,13 +49,14 @@ $boutton .= '<input type="hidden" name="id" value="' . $info['id'] . '">';
 $boutton .= '<input type="hidden" name="suprimer">';
 $boutton .= '<button type="submit">Suprimer</button>';
 $boutton .= '</form>';
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
     <meta charset="UTF-8">
-    <title>Fiche - <?php echo $info['categorie'] ?></title>
+    <title>Fiche - <?php echo $info['nom'] ?></title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 
@@ -72,13 +76,11 @@ $boutton .= '</form>';
 
     <main>
         <section class="content">
-
-            <h1><?php echo $info['categorie'] ?></h1>
+            <h1><?php echo $info['nom'] ?></h1>
             <h2>Modifier la fiche</h2>
             <?php echo html_form($info) ?>
             <?php echo $boutton ?>
         </section>
-
 
     </main>
 

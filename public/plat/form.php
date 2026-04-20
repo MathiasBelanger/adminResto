@@ -13,12 +13,9 @@ function html_form($info = [])
     $resultat .= '<form action="" method="post" enctype="multipart/form-data">';
     $resultat .= html_form_nom($info['nom'] ?? "");
     $resultat .= html_form_categorie($info['categorie_id'] ?? "");
-    $resultat .= html_form_origine($info['origine'] ?? "");
-    $resultat .= html_form_anne($info['anne'] ?? "");
-    $resultat .= html_form_extra($info['extra'] ?? "");
-    $resultat .= html_form_pays($info['pays'] ?? "");
+    $resultat .= html_form_ingredient($info['ingredient'] ?? "");
     $resultat .= html_form_prix($info['prix'] ?? "");
-
+    
     $resultat .= '<label><input type="checkbox" required>    Je confirme les modifications</label>';
     if (isset($info['id'])) {
         $resultat .= '<input type="hidden" name="id" value="' . $info['id'] . '">';
@@ -39,9 +36,9 @@ function html_form_categorie($categorie = "")
     $resultat .= '<select name="categorie_id">';
     foreach ($types as $type) {
         if ($categorie == $type["id"]) {
-            $resultat .= '<option value="' .$type["id"] . '" selected>';
+            $resultat .= '<option value="' . $type["id"] . '" selected>';
         } else {
-            $resultat .= '<option value="' .$type["id"] . '">';
+            $resultat .= '<option value="' . $type["id"] . '">';
         }
         $resultat .= $type["categorie"];
     }
@@ -57,35 +54,11 @@ function html_form_nom($nom = "")
     $resultat .= '</label>';
     return $resultat;
 }
-function html_form_origine($origine = "")
+function html_form_ingredient($ingredient = "")
 {
     $resultat = '';
-    $resultat .= '<label>Origine: ';
-    $resultat .= '<input type="text" name="origine" value="' . $origine . '">';
-    $resultat .= '</label>';
-    return $resultat;
-}
-function html_form_anne($anne = "")
-{
-    $resultat = '';
-    $resultat .= '<label>Année: ';
-    $resultat .= '<input type="text" name="anne" value="' . $anne . '">';
-    $resultat .= '</label>';
-    return $resultat;
-}
-function html_form_extra($extra = "")
-{
-    $resultat = '';
-    $resultat .= '<label>Extra: ';
-    $resultat .= '<input type="text" name="extra" value="' . $extra . '">';
-    $resultat .= '</label>';
-    return $resultat;
-}
-function html_form_pays($pays = "")
-{
-    $resultat = '';
-    $resultat .= '<label>Région: ';
-    $resultat .= '<input type="text" name="pays" value="' . $pays . '">';
+    $resultat .= '<label>Description: ';
+    $resultat .= '<input type="text" name="ingredient" value="' . $ingredient . '">';
     $resultat .= '</label>';
     return $resultat;
 }

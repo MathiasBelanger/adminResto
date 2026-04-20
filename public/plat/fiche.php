@@ -6,7 +6,7 @@ if (!isset($_GET['id'])) {
 $id = $_GET['id'];
 $bd = "../../database/db.sqlite";
 $pdo = new PDO("sqlite:" . $bd);
-$stmt = $pdo->prepare("SELECT boisson.*,categorie.categorie as nom_categorie from boisson INNER JOIN categorie on boisson.categorie_id = categorie.id WHERE boisson.id=:id");
+$stmt = $pdo->prepare("SELECT plat.*,categorie.categorie as nom_categorie from plat INNER JOIN categorie on plat.categorie_id = categorie.id WHERE plat.id=:id");
 $stmt->execute([':id' => $id]);
 $info = $stmt->fetch();
 $boutton = '';
@@ -45,10 +45,7 @@ $boutton .= '<a href="modifier.php?id=' . $info['id'] . '">Modifier la fiche</a>
                 <ul>
                     <li><strong>Nom: </strong><?php echo $info['nom'] ?></li>
                     <li><strong>Catégorie: </strong><?php echo $info["nom_categorie"] ?></li>
-                    <li><strong>Origine: </strong><?php echo $info['origine'] ?></li>
-                    <li><strong>Anné: </strong><?php echo $info['anne'] ?></li>
-                    <li><strong>Extra: </strong><?php echo $info['extra'] ?></li>
-                    <li><strong>Région: </strong><?php echo $info['pays'] ?></li>
+                    <li><strong>Description: </strong><?php echo $info['ingredient'] ?></li>
                     <li><strong>Prix: </strong><?php echo $info['prix'] ?></li>
                 </ul>
             </article>
