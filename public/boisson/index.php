@@ -3,15 +3,32 @@ $bd = "../../database/db.sqlite";
 $pdo = new PDO("sqlite:" . $bd);
 $stmt = $pdo->prepare("SELECT * FROM boisson");
 $stmt->execute();
-$categorie = '';
-$categorie .= '<div class="cards">';
+$boisson = '';
+$boisson .= '<div class="cards">';
 while ($enr = $stmt->fetch()) {
-    $categorie .= '<article class="card">';
-    $categorie .= '<h2>' . $enr['categorie_id'] . ' ' . $enr['nom'] . '</h2>';
-    $categorie .= '<a href="fiche.php?id=' . $enr['id'] . '">Voir la fiche</a>';
-    $categorie .= '</article>';
+    $types = [
+        "Entrées",
+        "Plats principaux - viande",
+        "Plats principaux - poissons et fruits de mer",
+        "Plats principaux - végétarien",
+        "Desserts",
+        "vin blanc",
+        "vin rouge",
+        "vin orange et nature",
+        "vin mousseux",
+        "spiritueux et digestifs",
+    ];
+    $boisson .= '<article class="card">';
+    foreach ($types as $i => $type) {
+        if ($enr['categorie_id'] == $i) {
+            $boisson .= '<h2>' . $i . '</h2>';
+        }
+    }
+    $boisson .= '<h4>' . $enr['nom'] . '</h4>';
+    $boisson .= '<a href="fiche.php?id=' . $enr['id'] . '">Voir la fiche</a>';
+    $boisson .= '</article>';
 }
-$categorie .= '</div>';
+$boisson .= '</div>';
 $ajout = '';
 $ajout .= '<a href="ajout.php?id=' . $enr['id'] . '">Ajouter une boisson</a>';
 ?>
@@ -41,7 +58,7 @@ $ajout .= '<a href="ajout.php?id=' . $enr['id'] . '">Ajouter une boisson</a>';
     <main class="home">
         <h1>Les Boissons</h1>
 
-        <?php echo $categorie; ?>
+        <?php echo $boisson; ?>
         <?php echo $ajout; ?>
 
     </main>

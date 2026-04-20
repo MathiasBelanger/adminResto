@@ -1,22 +1,22 @@
 <?php
 if (isset($_POST['ajouter'])) {
     if(isset($_POST['categorie'])) $categorie = $_POST['categorie'];
-    if(isset($_POST['boisson'])){
-        $boisson = 1;
+    if(isset($_POST['type'])){
+        $type = 1;
     }
     else{
-        $boisson = 0;
+        $type = 0;
     } //COMMIT
 
     $pdo = new PDO("sqlite:../../database/db.sqlite");
     $SQL = "INSERT INTO categorie(categorie, type) VALUES ";
     $SQL .= "(";
     $SQL .= ":categorie ,";
-    $SQL .= ":boisson ";
+    $SQL .= ":type ";
     $SQL .= ")";
 
     $stmt = $pdo->prepare($SQL);
-    $stmt->execute([':categorie'=>$categorie, ':boisson'=>$boisson]);
+    $stmt->execute([':categorie'=>$categorie, ':type'=>$type]);
     header("location:index.php");
     exit;
 }
@@ -40,7 +40,7 @@ function html_form_categorie()
     $resultat = '';
     $resultat .= '<label>Nouvelle catégorie :';
     $resultat .= '<input type="text" name="categorie" value="Nom de la catégorie"';
-    $resultat .= '<input type="checkbox" name="boisson" value="boisson"';
+    $resultat .= '<input type="checkbox" name="type" value="type"';
     $resultat .= '</label>';
     return $resultat;
 }
