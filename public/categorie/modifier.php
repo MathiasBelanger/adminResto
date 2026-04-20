@@ -11,9 +11,6 @@ if (isset($_POST['suprimer'])) {
     exit;
 }
 if (isset($_POST['enregistrer'])) {
-    //traitement
-    //var_dump($_POST);
-    //exit;
     $id = $_POST['id'];
     $categorie = $_POST['categorie'];
     $type = $_POST['type'];

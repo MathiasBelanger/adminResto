@@ -1,36 +1,20 @@
 <?php
 $bd = "../../database/db.sqlite";
 $pdo = new PDO("sqlite:" . $bd);
-$stmt = $pdo->prepare("SELECT * FROM boisson");
+$stmt = $pdo->prepare("SELECT boisson.*,categorie.categorie as nom_categorie from boisson INNER JOIN categorie on boisson.categorie_id = categorie.id ORDER by categorie");
 $stmt->execute();
 $boisson = '';
 $boisson .= '<div class="cards">';
-while ($enr = $stmt->fetch()) {
-    $types = [
-        "Entrées",
-        "Plats principaux - viande",
-        "Plats principaux - poissons et fruits de mer",
-        "Plats principaux - végétarien",
-        "Desserts",
-        "vin blanc",
-        "vin rouge",
-        "vin orange et nature",
-        "vin mousseux",
-        "spiritueux et digestifs",
-    ];
+while ($info = $stmt->fetch()) {
     $boisson .= '<article class="card">';
-    foreach ($types as $i => $type) {
-        if ($enr['categorie_id'] == $i) {
-            $boisson .= '<h2>' . $i . '</h2>';
-        }
-    }
-    $boisson .= '<h4>' . $enr['nom'] . '</h4>';
-    $boisson .= '<a href="fiche.php?id=' . $enr['id'] . '">Voir la fiche</a>';
+    $boisson .= '<h2>' . $info["nom_categorie"] . '</h2>';
+    $boisson .= '<h4>' . $info['nom'] . '</h4>';
+    $boisson .= '<a href="fiche.php?id=' . $info['id'] . '">Voir la fiche</a>';
     $boisson .= '</article>';
 }
 $boisson .= '</div>';
 $ajout = '';
-$ajout .= '<a href="ajout.php?id=' . $enr['id'] . '">Ajouter une boisson</a>';
+$ajout .= '<a href="ajout.php">Ajouter une boisson</a>';
 ?>
 <!DOCTYPE html>
 <html lang="fr">

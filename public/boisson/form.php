@@ -1,18 +1,28 @@
 <?php
+function execute($sql, $data = [])
+{
+    $bd = "../../database/db.sqlite";
+    $pdo = new PDO("sqlite:" . $bd);
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute($data);
+    return $stmt;
+}
 function html_form($info = [])
 {
     $resultat = '';
     $resultat .= '<form action="" method="post" enctype="multipart/form-data">';
-    $resultat .= html_form_nom($info['nom']);
-    $resultat .= html_form_categorie($info['categorie_id']);
-    $resultat .= html_form_origine($info['origine']);
-    $resultat .= html_form_anne($info['anne']);
-    $resultat .= html_form_extra($info['extra']);
-    $resultat .= html_form_pays($info['pays']);
-    $resultat .= html_form_prix($info['prix']);
+    $resultat .= html_form_nom($info['nom'] ?? "");
+    $resultat .= html_form_categorie($info['categorie_id'] ?? "");
+    $resultat .= html_form_origine($info['origine'] ?? "");
+    $resultat .= html_form_anne($info['anne'] ?? "");
+    $resultat .= html_form_extra($info['extra'] ?? "");
+    $resultat .= html_form_pays($info['pays'] ?? "");
+    $resultat .= html_form_prix($info['prix'] ?? "");
 
     $resultat .= '<label><input type="checkbox" required>    Je confirme les modifications</label>';
-    $resultat .= '<input type="hidden" name="id" value="' . $info['id'] . '">';
+    if (isset($info['id'])) {
+        $resultat .= '<input type="hidden" name="id" value="' . $info['id'] . '">';
+    }
     $resultat .= '<input type="hidden" name="enregistrer">';
     $resultat .= '<button type="submit">Enregistrer</button>';
     $resultat .= '<button type="reset">Réinitialiser</button>';
@@ -20,30 +30,32 @@ function html_form($info = [])
 
     return $resultat;
 }
-function html_form_categorie($categorieInfo = "")
+function html_form_categorie($categorie = "")
 {
-    $types = [
-        "Entrées",
-        "Plats principaux - viande",
-        "Plats principaux - poissons et fruits de mer",
-        "Plats principaux - végétarien",
-        "Desserts",
-        "vin blanc",
-        "vin rouge",
-        "vin orange et nature",
-        "vin mousseux",
-        "spiritueux et digestifs",
-    ];
+    // $types = [
+    //     "Entrées",
+    //     "Plats principaux - viande",
+    //     "Plats principaux - poissons et fruits de mer",
+    //     "Plats principaux - végétarien",
+    //     "Desserts",
+    //     "vin blanc",
+    //     "vin rouge",
+    //     "vin orange et nature",
+    //     "vin mousseux",
+    //     "spiritueux et digestifs",
+    // ];
+    $stmt = execute("SELECT id,categorie from categorie order by categorie",);
+    $types = $stmt->fetchAll();
     $resultat = '';
     $resultat .= '<label>Catégories: ';
-    $resultat .= '<select name="categorie">';
-    foreach ($types as $i => $type) {
-        if ($categorieInfo == $i) {
-            $resultat .= '<option value="' . $i . '" selected>';
+    $resultat .= '<select name="categorie_id">';
+    foreach ($types as $type) {
+        if ($categorie == $type["id"]) {
+            $resultat .= '<option value="' .$type["id"] . '" selected>';
         } else {
-            $resultat .= '<option value="' . $i . '">';
+            $resultat .= '<option value="' .$type["id"] . '">';
         }
-        $resultat .= $type;
+        $resultat .= $type["categorie"];
     }
     $resultat .= '</select>';
     $resultat .= '</label>';
@@ -68,7 +80,7 @@ function html_form_origine($origine = "")
 function html_form_anne($anne = "")
 {
     $resultat = '';
-    $resultat .= '<label>Anné: ';
+    $resultat .= '<label>Année: ';
     $resultat .= '<input type="text" name="anne" value="' . $anne . '">';
     $resultat .= '</label>';
     return $resultat;

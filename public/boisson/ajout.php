@@ -1,54 +1,31 @@
 <?php
-if (isset($_POST['ajouter'])) {
-    if(isset($_POST['origine'])) $origine = $_POST['origine'];
-    if(isset($_POST['nom'])) $nom = $_POST['nom'];
-    if(isset($_POST['extra'])) $extra = $_POST['extra'];
-    if(isset($_POST['anne'])) $anne = $_POST['anne'];
-    if(isset($_POST['prix'])) $prix = $_POST['prix'];
+include_once("form.php");
+if (isset($_POST['enregistrer'])) {
+    if (isset($_POST['nom'])) $nom = $_POST['nom'];
+    if (isset($_POST['categorie_id'])) $categorie_id = $_POST['categorie_id'];
+    if (isset($_POST['origine'])) $origine = $_POST['origine'];
+    if (isset($_POST['anne'])) $anne = $_POST['anne'];
+    if (isset($_POST['extra'])) $extra = $_POST['extra'];
+    if (isset($_POST['pays'])) $pays = $_POST['pays'];
+    if (isset($_POST['prix'])) $prix = $_POST['prix'];
 
     $pdo = new PDO("sqlite:../../database/db.sqlite");
-    $SQL = "INSERT INTO categorie(categorie, type) VALUES ";
+    $SQL = "INSERT INTO boisson(nom, categorie_id, origine, anne, extra, pays, prix) VALUES ";
     $SQL .= "(";
-    $SQL .= ":origine ,";
     $SQL .= ":nom ,";
-    $SQL .= ":extra ,";
+    $SQL .= ":categorie_id ,";
+    $SQL .= ":origine ,";
     $SQL .= ":anne ,";
+    $SQL .= ":extra ,";
+    $SQL .= ":pays ,";
     $SQL .= ":prix ";
     $SQL .= ")";
 
     $stmt = $pdo->prepare($SQL);
-    $stmt->execute([':origine'=>$origine, ':nom'=>$nom, ':extra'=>$extra, ':anne'=>$anne, ':prix'=>$prix]);
+    $stmt->execute([':origine' => $origine, ':categorie_id' => $categorie_id, ':nom' => $nom, ':extra' => $extra, ':anne' => $anne, ':pays' => $pays, ':prix' => $prix]);
     header("location:index.php");
     exit;
 }
-
-function html_form()
-{
-    $resultat = '';
-    $resultat .= '<form action="" method="post" enctype="multipart/form-data">';
-    $resultat .= html_form_categorie();
-
-    $resultat .= '<label><input type="checkbox" required>Je confirme la nouvelle boisson.</label>';
-    $resultat .= '<input type="hidden" name="ajouter">';
-    $resultat .= '<button type="submit">Ajouter</button>';
-    $resultat .= '<button type="reset">Réinitialiser</button>';
-    $resultat .= '</form>';
-
-    return $resultat;
-}
-function html_form_categorie()
-{
-    $resultat = '';
-    $resultat .= '<label>Nouvelle boisson :';
-    $resultat .= '<input type="text" name="origine" value="Origine de la boisson"';
-    $resultat .= '<input type="text" name="nom" value="Nom de la boisson"';
-    $resultat .= '<input type="text" name="extra" value="Données extras"';
-    $resultat .= '<input type="number" name="anne" value="Année de création"';
-    $resultat .= '<input type="number" name="prix" value="Prix de la boisson"';
-    $resultat .= '</label>';
-    return $resultat;
-}
-
 
 ?>
 <!DOCTYPE html>
