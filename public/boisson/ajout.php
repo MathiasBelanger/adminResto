@@ -20,7 +20,7 @@ if (isset($_POST['ajouter'])) {
     $stmt->execute([':origine'=>$origine, ':nom'=>$nom, ':extra'=>$extra, ':anne'=>$anne, ':prix'=>$prix]);
     header("location:index.php");
     exit;
-} //COMMIT
+}
 
 function html_form()
 {

@@ -1,4 +1,5 @@
 <?php
+include_once("form.php");
 if (isset($_POST['suprimer'])) {
     $id = $_POST['id'];
 
@@ -9,7 +10,7 @@ if (isset($_POST['suprimer'])) {
     header("location:index.php");
     exit;
 }
-if (isset($_POST['modifier'])) {
+if (isset($_POST['enregistrer'])) {
     //traitement
     //var_dump($_POST);
     //exit;
@@ -48,53 +49,6 @@ $boutton .= '<input type="hidden" name="id" value="' . $info['id'] . '">';
 $boutton .= '<input type="hidden" name="suprimer">';
 $boutton .= '<button type="submit">Suprimer</button>';
 $boutton .= '</form>';
-
-function html_form($info)
-{
-    $resultat = '';
-    $resultat .= '<form action="" method="post" enctype="multipart/form-data">';
-    $resultat .= html_form_categorie($info['categorie']);
-    $resultat .= html_form_type($info['type']);
-
-    $resultat .= '<label><input type="checkbox" required>    Je confirme les modifications</label>';
-    $resultat .= '<input type="hidden" name="id" value="' . $info['id'] . '">';
-    $resultat .= '<input type="hidden" name="modifier">';
-    $resultat .= '<button type="submit">Enregistrer</button>';
-    $resultat .= '<button type="reset">Réinitialiser</button>';
-    $resultat .= '</form>';
-
-    return $resultat;
-}
-function html_form_type($typeInfo)
-{
-    $types = [
-        "Nourriture",
-        "Boisson",
-    ];
-    $resultat = '';
-    $resultat .= '<fieldset>';
-    $resultat .= '<legend>Types</legend>';
-    foreach ($types as $i => $type) {
-        if ($typeInfo == $i) {
-            $resultat .= '<label><input type="radio" name="type" value="' . $i . '" checked>';
-        } else {
-            $resultat .= '<label><input type="radio" name="type" value="' . $i . '">';
-        }
-        $resultat .= $type;
-        $resultat .= '</label>';
-    }
-    $resultat .= '</fieldset>';
-    return $resultat;
-}
-function html_form_categorie($categorie)
-{
-    $resultat = '';
-    $resultat .= '<label>Catégorie :';
-    $resultat .= '<input type="text" name="categorie" value="' . $categorie . '">';
-    $resultat .= '</label>';
-    return $resultat;
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
