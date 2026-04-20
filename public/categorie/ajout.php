@@ -6,7 +6,7 @@ if (isset($_POST['ajouter'])) {
     }
     else{
         $boisson = 0;
-    }
+    } //COMMIT
 
     $pdo = new PDO("sqlite:../../database/db.sqlite");
     $SQL = "INSERT INTO categorie(categorie, type) VALUES ";
