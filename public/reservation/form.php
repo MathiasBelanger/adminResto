@@ -44,7 +44,7 @@ function html_form_dateReservation($dateReservation = "")
 {
     $resultat = '';
     $resultat .= '<label>Date de Réservation :';
-    $resultat .= '<input type="datetime-local" name="dateReservation" value="'. ($dateReservation?:date("Y-m-d\TH:i")) .'">';
+    $resultat .= '<input type="datetime-local" name="dateReservation" value="' . ($dateReservation ?: date("Y-m-d\TH:i")) . '">';
     $resultat .= '</label>';
     return $resultat;
 }
@@ -77,7 +77,6 @@ function html_form_exterieur($exterieur = 0)
     $resultat .= '<fieldset>';
     $resultat .= '<legend>Types</legend>';
     foreach ($types as $i => $type) {
-        echo $i;
         if ($exterieur == $i) {
             $resultat .= '<label><input type="radio" name="choixIntExt" value="' . $i . '" checked>';
         } else {
