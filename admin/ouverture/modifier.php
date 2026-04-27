@@ -1,5 +1,6 @@
 <?php
 include_once("form.php");
+include_once("./admin/nonContenu.php");
 if (isset($_POST['enregistrer'])) {
     $id = $_POST['id'];
     $heure_ouverture = $_POST['heure_ouverture'];
@@ -47,34 +48,20 @@ $info = $stmt->fetch();
 </head>
 
 <body>
-
-    <header>
-        <div class="logo">📜 Histoire+</div>
-        <nav>
-            <ul>
-                <li><a href="../index.php">Accueil</a></li>
-                <li><a href="#">Personnages</a></li>
-                <li><a href="#">Époques</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
+    <?php html_header(); ?>
+    
     <main>
         <section class="content">
-
+            
             <h1><?php echo $info['journee'] ?></h1>
             <h2>Modifier les heures</h2>
             <?php echo html_form($info) ?>
         </section>
-
-
+        
+        
     </main>
-
-    <footer>
-        <p>© 2026 Histoire+ - Tous droits réservés</p>
-    </footer>
-
+    
+    <?php html_footer(); ?>
 </body>
 
 </html>

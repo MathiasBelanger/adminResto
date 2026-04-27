@@ -1,10 +1,11 @@
 <?php
 include_once("form.php");
+include_once("./admin/nonContenu.php");
 if (isset($_POST['suprimer'])) {
     $id = $_POST['id'];
 
     $pdo = new PDO("sqlite:../../database/db.sqlite");
-    $suprimer = "DELETE FROM categorie WHERE id=:id";
+    $suprimer = "DELETE FROM reservation WHERE id=:id";
     $stmt = $pdo->prepare($suprimer);
     $stmt->execute([":id" => $id]);
     header("location:index.php");
@@ -12,17 +13,28 @@ if (isset($_POST['suprimer'])) {
 }
 if (isset($_POST['enregistrer'])) {
     $id = $_POST['id'];
-    $categorie = $_POST['categorie'];
-    $type = $_POST['type'];
-
+    $nom = $_POST['nom'];
+    $nbPersonnes = $_POST['nbPersonnes'];
+    $dateReservation = $_POST['dateReservation'];
+    $email = $_POST['email'];
+    $cellulaire = $_POST['cellulaire'];
+    $choixIntExt = $_POST['choixIntExt'];
     $pdo = new PDO("sqlite:../../database/db.sqlite");
-    $SQL = "UPDATE categorie SET ";
-    $SQL .= "categorie=:categorie, ";
-    $SQL .= "type=:type ";
+    $SQL = "UPDATE reservation SET ";
+    $SQL .= "nom=:nom, ";
+    $SQL .= "nbPersonnes=:nbPersonnes, ";
+    $SQL .= "dateReservation=:dateReservation, ";
+    $SQL .= "email=:email, ";
+    $SQL .= "cellulaire=:cellulaire, ";
+    $SQL .= "choixIntExt=:choixIntExt ";
     $SQL .= "WHERE id=:id";
     $stmt = $pdo->prepare($SQL);
-    $stmt->bindParam(":categorie", $categorie);
-    $stmt->bindParam(":type", $type);
+    $stmt->bindParam(":nom", $nom);
+    $stmt->bindParam(":nbPersonnes", $nbPersonnes);
+    $stmt->bindParam(":dateReservation", $dateReservation);
+    $stmt->bindParam(":email", $email);
+    $stmt->bindParam(":cellulaire", $cellulaire);
+    $stmt->bindParam(":choixIntExt", $choixIntExt);
     $stmt->bindParam(":id", $id);
     $stmt->execute();
     header("location:index.php");
@@ -36,11 +48,11 @@ if (!isset($_GET['id'])) {
 $id = $_GET['id'];
 $bd = "../../database/db.sqlite";
 $pdo = new PDO("sqlite:" . $bd);
-$stmt = $pdo->prepare("SELECT * FROM categorie WHERE id=:id");
+$stmt = $pdo->prepare("SELECT * FROM reservation WHERE id=:id");
 $stmt->execute([':id' => $id]);
 $info = $stmt->fetch();
 
-$boutton = '<form action="" method="post"';
+$boutton = '<form action="" method="post">';
 $boutton .= '<label><input type="checkbox" required>  Je confirme que je veux suprimer</label>';
 $boutton .= '<input type="hidden" name="id" value="' . $info['id'] . '">';
 $boutton .= '<input type="hidden" name="suprimer">';
@@ -52,40 +64,24 @@ $boutton .= '</form>';
 
 <head>
     <meta charset="UTF-8">
-    <title>Fiche - Modifier - Plat></title>
+    <title>Fiche - Modifier - Reservation</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 
 <body>
-
-    <header>
-        <div class="logo">📜 Histoire+</div>
-        <nav>
-            <ul>
-                <li><a href="../index.php">Accueil</a></li>
-                <li><a href="#">Personnages</a></li>
-                <li><a href="#">Époques</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
+    <?php html_header(); ?>
+    
     <main>
         <section class="content">
-
-            <h1><?php echo $info['categorie'] ?></h1>
+            
+            <h1><?php echo $info['nom'] ?></h1>
             <h2>Modifier la fiche</h2>
             <?php echo html_form($info) ?>
             <?php echo $boutton ?>
-        </section>
-
-
+        </section>        
     </main>
-
-    <footer>
-        <p>© 2026 Histoire+ - Tous droits réservés</p>
-    </footer>
-
+    
+    <?php html_footer(); ?>
 </body>
 
 </html>

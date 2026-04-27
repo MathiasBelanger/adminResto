@@ -1,5 +1,6 @@
 <?php
 include_once("form.php");
+include_once("./admin/nonContenu.php");
 if (isset($_POST['enregistrer'])) {
     if (isset($_POST['categorie'])) $categorie = $_POST['categorie'];
     if (isset($_POST['type'])) {
@@ -37,29 +38,16 @@ $info = $stmt->fetch();
 
 <body>
 
-    <header>
-        <div class="logo">📜 Histoire+</div>
-        <nav>
-            <ul>
-                <li><a href="../index.php">Accueil</a></li>
-                <li><a href="#">Personnages</a></li>
-                <li><a href="#">Époques</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
+    <?php html_header(); ?>
+    
     <main>
         <section class="content">
             <h1>Ajouter une catégorie</h1>
             <?php echo html_form($info) ?>
         </section>
     </main>
-
-    <footer>
-        <p>© 2026 Categorie+ - Tous droits réservés</p>
-    </footer>
-
+    
+    <?php html_footer(); ?>
 </body>
 
 </html>

@@ -1,9 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap%27');
+@import url("https://use.typekit.net/kba0icq.css");
+
+h2,h3,h4{
+    font-family: "Cynzel", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.logo,h1{
+    font-family: "Cochin-lt-pro", sans-serif;
+    font-optical-sizing: auto;
+    font-style: italic;
+}
+p,a,button,label,input{
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+label{
+    padding: 1em;
+}
+
+form{
+    margin-top: 1em;
+}
+
 :root {
-    --couleur-primaire: hsl(210, 60%, 35%);
-    --couleur-secondaire: hsl(45, 80%, 50%);
-    --couleur-fond: hsl(210, 30%, 95%);
-    --couleur-texte: hsl(210, 20%, 20%);
-    --ombre: 0 4px 10px hsl(210, 20%, 70%);
+    --couleur-primaire: #B7BBA2;
+    --couleur-secondaire: #C96D6F;
+    --couleur-fond: #f5f1e9;
+    --couleur-texte: #333849;
+    --ombre: 0 4px 10px #74798A;
 }
 
 * {
@@ -53,7 +82,26 @@ header {
 main {
     display: flex;
     padding: 2rem;
+    padding-bottom: 5rem;
     gap: 2rem;
+
+    div {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    >a{
+        padding: 1em;
+        text-align: center;
+        text-decoration: none;
+        color: var(--couleur-secondaire);
+        font-size: 1.5em;
+        &:hover{
+            color: var(--couleur-texte);
+        }
+    }
 }
 
 .sidebar {
@@ -163,9 +211,12 @@ form {
 /* FOOTER */
 
 footer {
+    position: fixed;
     text-align: center;
+    width: 100%;
     padding: 1rem;
     background: var(--couleur-primaire);
     color: white;
     margin-top: 2rem;
+    bottom: 0;
 }
