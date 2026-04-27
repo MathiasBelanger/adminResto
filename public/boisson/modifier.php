@@ -65,7 +65,7 @@ $boutton .= '</form>';
 
 <head>
     <meta charset="UTF-8">
-    <title>Fiche - <?php echo $info['nom'] ?></title>
+    <title>Fiche - Modifier - Boisson?></title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 

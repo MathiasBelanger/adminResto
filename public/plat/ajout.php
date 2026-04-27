@@ -27,7 +27,7 @@ if (isset($_POST['enregistrer'])) {
 
 <head>
     <meta charset="UTF-8">
-    <title>Fiche - Ajout - plat</title>
+    <title>Fiche - Ajout - Plat</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 

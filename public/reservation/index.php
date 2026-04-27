@@ -22,7 +22,7 @@ $ajout .= '<a href="ajout.php">Ajouter une catégorie</a>';
 
 <head>
     <meta charset="UTF-8">
-    <title>Accueil - Histoire+</title>
+    <title>Reservation</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 

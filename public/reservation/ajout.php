@@ -39,7 +39,7 @@ $info = $stmt->fetch();
 
 <head>
     <meta charset="UTF-8">
-    <title>Fiche - Ajout - Catégorie</title>
+    <title>Fiche - Ajout - Reservation</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 

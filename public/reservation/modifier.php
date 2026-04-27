@@ -63,7 +63,7 @@ $boutton .= '</form>';
 
 <head>
     <meta charset="UTF-8">
-    <title>Fiche - <?php echo $info['reservation'] ?></title>
+    <title>Fiche - Modifier - Reservation</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 
