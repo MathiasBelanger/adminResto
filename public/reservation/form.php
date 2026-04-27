@@ -25,7 +25,7 @@ function html_form($info = [])
 function html_form_nom($nom = "")
 {
     $resultat = '';
-    $resultat .= '<label>Nom :';
+    $resultat .= '<label>Nom: ';
     $resultat .= '<input type="text" name="nom" value="' . $nom . '">';
     $resultat .= '</label>';
     return $resultat;
@@ -34,7 +34,7 @@ function html_form_nom($nom = "")
 function html_form_nbPersonnes($nbPersonnes = "")
 {
     $resultat = '';
-    $resultat .= '<label>Nombre de personnes :';
+    $resultat .= '<label>Nombre de personnes: ';
     $resultat .= '<input type="number" name="nbPersonnes" value="' . $nbPersonnes . '">';
     $resultat .= '</label>';
     return $resultat;
@@ -43,7 +43,7 @@ function html_form_nbPersonnes($nbPersonnes = "")
 function html_form_dateReservation($dateReservation = "")
 {
     $resultat = '';
-    $resultat .= '<label>Date de Réservation :';
+    $resultat .= '<label>Date de Réservation: ';
     $resultat .= '<input type="datetime-local" name="dateReservation" value="' . ($dateReservation ?: date("Y-m-d\TH:i")) . '">';
     $resultat .= '</label>';
     return $resultat;
@@ -52,7 +52,7 @@ function html_form_dateReservation($dateReservation = "")
 function html_form_email($email = "")
 {
     $resultat = '';
-    $resultat .= '<label>Email :';
+    $resultat .= '<label>Email: ';
     $resultat .= '<input type="email" name="email" value="' . $email . '">';
     $resultat .= '</label>';
     return $resultat;
@@ -61,7 +61,7 @@ function html_form_email($email = "")
 function html_form_cellulaire($cellulaire = "")
 {
     $resultat = '';
-    $resultat .= '<label>Numero de Telephone :';
+    $resultat .= '<label>Numéro de Téléphone: ';
     $resultat .= '<input type="tel" name="cellulaire" value="' . $cellulaire . '">';
     $resultat .= '</label>';
     return $resultat;
@@ -83,7 +83,7 @@ function html_form_exterieur($exterieur = 0)
             $resultat .= '<label><input type="radio" name="choixIntExt" value="' . $i . '">';
         }
         $resultat .= $type;
-        $resultat .= '</label>';
+        $resultat .= ' </label>';
     }
     $resultat .= '</fieldset>';
     return $resultat;

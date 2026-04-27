@@ -18,6 +18,7 @@ function html_form($info = [])
     $resultat .= html_form_extra($info['extra'] ?? "");
     $resultat .= html_form_pays($info['pays'] ?? "");
     $resultat .= html_form_prix($info['prix'] ?? "");
+    $resultat .= html_form_image();
 
     $resultat .= '<label><input type="checkbox" required>    Je confirme les modifications</label>';
     if (isset($info['id'])) {
@@ -39,9 +40,9 @@ function html_form_categorie($categorie = "")
     $resultat .= '<select name="categorie_id">';
     foreach ($types as $type) {
         if ($categorie == $type["id"]) {
-            $resultat .= '<option value="' .$type["id"] . '" selected>';
+            $resultat .= '<option value="' . $type["id"] . '" selected>';
         } else {
-            $resultat .= '<option value="' .$type["id"] . '">';
+            $resultat .= '<option value="' . $type["id"] . '">';
         }
         $resultat .= $type["categorie"];
     }
@@ -93,7 +94,16 @@ function html_form_prix($prix = "")
 {
     $resultat = '';
     $resultat .= '<label>Prix: ';
-    $resultat .= '<input type="text" name="prix" value="' . $prix . '">';
+    $resultat .= '<input type="text" name="prix" size="5" value="' . $prix . '">';
+    $resultat .= '</label>';
+    return $resultat;
+}
+
+function html_form_image()
+{
+    $resultat = '';
+    $resultat .= '<label>Image: ';
+    $resultat .= '<input type="file" name="image_url" accept="image/*">';
     $resultat .= '</label>';
     return $resultat;
 }

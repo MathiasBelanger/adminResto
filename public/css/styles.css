@@ -1,9 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://use.typekit.net/kba0icq.css");
+
 :root {
-    --couleur-primaire: hsl(210, 60%, 35%);
-    --couleur-secondaire: hsl(45, 80%, 50%);
-    --couleur-fond: hsl(210, 30%, 95%);
-    --couleur-texte: hsl(210, 20%, 20%);
-    --ombre: 0 4px 10px hsl(210, 20%, 70%);
+    --couleur-primaire: #84896D;
+    --couleur-secondaire: #B5282F;
+    --couleur-tertiaire:  #F7E2CB;
+    --couleur-fond: #f5f1e9;
+    --couleur-texte: #29333d;
+    --ombre: 0 4px 10px #74798a;
 }
 
 * {
@@ -12,13 +17,35 @@
     box-sizing: border-box;
 }
 
+.logo {
+    font-family: "cochin-lt-pro", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--couleur-texte);
+}
+fieldset{
+    padding: .5rem;
+}
+h1,
+h2,
+h3,
+h4 {
+    font-family: "Cinzel", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
-    font-family: Arial, sans-serif;
+
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
     background: var(--couleur-fond);
     color: var(--couleur-texte);
 }
 
-/* HEADER */
 
 header {
     background: var(--couleur-primaire);
@@ -48,12 +75,20 @@ header {
     }
 }
 
-/* LAYOUT */
 
 main {
     display: flex;
     padding: 2rem;
+    padding-bottom: 5rem;
     gap: 2rem;
+}
+
+a {
+    display: inline-block;
+    margin-top: 1rem;
+    text-decoration: none;
+    color: var(--couleur-primaire);
+    font-weight: bold;
 }
 
 .sidebar {
@@ -69,6 +104,8 @@ main {
             margin-bottom: 0.5rem;
 
             a {
+                position: absolute;
+                bottom: 0;
                 text-decoration: none;
                 color: var(--couleur-primaire);
             }
@@ -78,9 +115,9 @@ main {
 
 .content {
     width: 75%;
+    padding: 1rem;
 }
 
-/* FICHE */
 
 .fiche {
     background: white;
@@ -103,7 +140,6 @@ main {
     }
 }
 
-/* FORMULAIRE */
 
 form {
     display: flex;
@@ -112,7 +148,8 @@ form {
     background: white;
     padding: 1rem;
     box-shadow: var(--ombre);
-
+    margin-top: 1rem;
+    
     input,
     select,
     textarea,
@@ -123,18 +160,18 @@ form {
     }
 
     button {
-        background: var(--couleur-secondaire);
+        color: var(--couleur-texte);
+        background: var(--couleur-primaire);
         border: none;
         cursor: pointer;
         font-weight: bold;
     }
 
     button:hover {
-        background: hsl(45, 80%, 45%);
+        background: var(--couleur-secondaire);
     }
 }
 
-/* PAGE ACCUEIL */
 
 .home {
     flex-direction: column;
@@ -142,27 +179,24 @@ form {
 
 .cards {
     display: flex;
+    flex-wrap: wrap;
     gap: 2rem;
 
     .card {
-        background: white;
+        background: var(--couleur-tertiaire);
         padding: 1rem;
         box-shadow: var(--ombre);
         width: 30%;
-
-        a {
-            display: inline-block;
-            margin-top: 1rem;
-            text-decoration: none;
-            color: var(--couleur-primaire);
-            font-weight: bold;
-        }
     }
 }
 
-/* FOOTER */
 
 footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+
     text-align: center;
     padding: 1rem;
     background: var(--couleur-primaire);

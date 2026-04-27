@@ -51,8 +51,8 @@ $stmt = $pdo->prepare("SELECT * FROM reservation WHERE id=:id");
 $stmt->execute([':id' => $id]);
 $info = $stmt->fetch();
 
-$boutton = '<form action="" method="post"';
-$boutton .= '<label><input type="checkbox" required>  Je confirme que je veux suprimer</label>';
+$boutton = '<form action="" method="post">';
+$boutton .= '<label><input type="checkbox" required>   Je confirme que je veux suprimer</label>';
 $boutton .= '<input type="hidden" name="id" value="' . $info['id'] . '">';
 $boutton .= '<input type="hidden" name="suprimer">';
 $boutton .= '<button type="submit">Suprimer</button>';
@@ -70,13 +70,15 @@ $boutton .= '</form>';
 <body>
 
     <header>
-        <div class="logo">📜 Histoire+</div>
+        <div class="logo">Les Rives Boréales</div>
         <nav>
             <ul>
                 <li><a href="../index.php">Accueil</a></li>
-                <li><a href="#">Personnages</a></li>
-                <li><a href="#">Époques</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="../categorie/index.php">Catégories</a></li>
+                <li><a href="../plat/index.php">Plats</a></li>
+                <li><a href="../boisson/index.php">Boissons</a></li>
+                <li><a href="../reservation/index.php">Réservations</a></li>
+                <li><a href="../heures/index.php">Heures d'ouvertures</a></li>
             </ul>
         </nav>
     </header>
@@ -94,7 +96,7 @@ $boutton .= '</form>';
     </main>
 
     <footer>
-        <p>© 2026 Histoire+ - Tous droits réservés</p>
+        <p>© 2026 Les rives Boréales</p>
     </footer>
 
 </body>

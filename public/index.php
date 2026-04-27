@@ -10,13 +10,15 @@
 <body>
 
     <header>
-        <div class="logo">📜 Histoire+</div>
+        <div class="logo">Les Rives Boréales</div>
         <nav>
             <ul>
                 <li><a href="index.php">Accueil</a></li>
-                <li><a href="#">Personnages</a></li>
-                <li><a href="#">Époques</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="categorie/index.php">Catégories</a></li>
+                <li><a href="plat/index.php">Plats</a></li>
+                <li><a href="boisson/index.php">Boissons</a></li>
+                <li><a href="reservation/index.php">Réservations</a></li>
+                <li><a href="heures/index.php">Heures d'ouvertures</a></li>
             </ul>
         </nav>
     </header>
@@ -60,7 +62,7 @@
     </main>
 
     <footer>
-        <p>© 2026 Histoire+ - Tous droits réservés</p>
+        <p>© 2026 Les rives Boréales</p>
     </footer>
 
 </body>

@@ -21,7 +21,7 @@ function html_form($info = [])
 function html_form_categorie($categorie = "")
 {
     $resultat = '';
-    $resultat .= '<label>Catégorie :';
+    $resultat .= '<label>Catégorie: ';
     $resultat .= '<input type="text" name="categorie" value="' . $categorie . '">';
     $resultat .= '</label>';
     return $resultat;
@@ -43,7 +43,7 @@ function html_form_type($typeInfo = "")
             $resultat .= '<label><input type="radio" name="type" value="' . $i . '">';
         }
         $resultat .= $type;
-        $resultat .= '</label>';
+        $resultat .= ' </label>';
     }
     $resultat .= '</fieldset>';
     return $resultat;

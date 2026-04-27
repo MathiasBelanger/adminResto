@@ -11,6 +11,11 @@ $stmt->execute([':id' => $id]);
 $info = $stmt->fetch();
 $boutton = '';
 $boutton .= '<a href="modifier.php?id=' . $info['id'] . '">Modifier la fiche</a>';
+
+$image = '';
+if ((isset($info['image_url'])) && $info['image_url'] != '') {
+    $image .= '<img src="' . $info['image_url'] . '" alt="image_de_' . $info['nom'] . '">';
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -24,13 +29,15 @@ $boutton .= '<a href="modifier.php?id=' . $info['id'] . '">Modifier la fiche</a>
 <body>
 
     <header>
-        <div class="logo">📜 Histoire+</div>
+        <div class="logo">Les Rives Boréales</div>
         <nav>
             <ul>
                 <li><a href="../index.php">Accueil</a></li>
-                <li><a href="#">Personnages</a></li>
-                <li><a href="#">Époques</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="../categorie/index.php">Catégories</a></li>
+                <li><a href="../plat/index.php">Plats</a></li>
+                <li><a href="../boisson/index.php">Boissons</a></li>
+                <li><a href="../reservation/index.php">Réservations</a></li>
+                <li><a href="../heures/index.php">Heures d'ouvertures</a></li>
             </ul>
         </nav>
     </header>
@@ -42,6 +49,7 @@ $boutton .= '<a href="modifier.php?id=' . $info['id'] . '">Modifier la fiche</a>
             <h1><?php echo $info['nom'] ?></h1>
 
             <article class="fiche">
+                <?php echo $image ?>
                 <ul>
                     <li><strong>Nom: </strong><?php echo $info['nom'] ?></li>
                     <li><strong>Catégorie: </strong><?php echo $info["nom_categorie"] ?></li>
@@ -49,7 +57,7 @@ $boutton .= '<a href="modifier.php?id=' . $info['id'] . '">Modifier la fiche</a>
                     <li><strong>Anné: </strong><?php echo $info['anne'] ?></li>
                     <li><strong>Extra: </strong><?php echo $info['extra'] ?></li>
                     <li><strong>Région: </strong><?php echo $info['pays'] ?></li>
-                    <li><strong>Prix: </strong><?php echo $info['prix'] ?></li>
+                    <li><strong>Prix: </strong><?php echo $info['prix'] ?>$</li>
                 </ul>
             </article>
             <?php echo $boutton ?>
@@ -58,7 +66,7 @@ $boutton .= '<a href="modifier.php?id=' . $info['id'] . '">Modifier la fiche</a>
     </main>
 
     <footer>
-        <p>© 2026 Histoire+ - Tous droits réservés</p>
+        <p>© 2026 Les rives Boréales</p>
     </footer>
 
 </body>

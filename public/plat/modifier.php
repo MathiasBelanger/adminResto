@@ -11,6 +11,7 @@ if (isset($_POST['suprimer'])) {
     exit;
 }
 if (isset($_POST['enregistrer'])) {
+    $upload = isset($_FILES['image_url']) && is_uploaded_file($_FILES['image_url']['tmp_name']);
     $id = $_POST['id'];
     $nom = $_POST['nom'];
     $categorie_id = $_POST['categorie_id'];
@@ -22,16 +23,26 @@ if (isset($_POST['enregistrer'])) {
     $SQL .= "nom=:nom, ";
     $SQL .= "categorie_id=:categorie_id, ";
     $SQL .= "ingredient=:ingredient, ";
+    if ($upload) {
+        $SQL .= "image_url=:image_url, ";
+    }
     $SQL .= "prix=:prix ";
     $SQL .= "WHERE id=:id";
     $stmt = $pdo->prepare($SQL);
+    if ($upload) {
+        $image_url = "../img/" . $_FILES['image_url']['name'];
+        move_uploaded_file($_FILES['image_url']['tmp_name'], __DIR__ . '/' . $image_url);
+    }
     $stmt->bindParam(":nom", $nom);
     $stmt->bindParam(":categorie_id", $categorie_id);
     $stmt->bindParam(":ingredient", $ingredient);
     $stmt->bindParam(":prix", $prix);
+    if ($upload) {
+        $stmt->bindParam(":image_url", $image_url);
+    }
     $stmt->bindParam(":id", $id);
     $stmt->execute();
-    header("location:index.php");
+    header("location:fiche.php?id=" . $id);
     exit;
 }
 
@@ -43,7 +54,7 @@ $id = $_GET['id'];
 $stmt = execute("SELECT * FROM plat WHERE id=:id", [':id' => $id]);
 $info = $stmt->fetch();
 
-$boutton = '<form action="" method="post"';
+$boutton = '<form action="" method="post">';
 $boutton .= '<label><input type="checkbox" required>  Je confirme que je veux suprimer</label>';
 $boutton .= '<input type="hidden" name="id" value="' . $info['id'] . '">';
 $boutton .= '<input type="hidden" name="suprimer">';
@@ -63,13 +74,15 @@ $boutton .= '</form>';
 <body>
 
     <header>
-        <div class="logo">📜 Histoire+</div>
+        <div class="logo">Les Rives Boréales</div>
         <nav>
             <ul>
                 <li><a href="../index.php">Accueil</a></li>
-                <li><a href="#">Personnages</a></li>
-                <li><a href="#">Époques</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="../categorie/index.php">Catégories</a></li>
+                <li><a href="../plat/index.php">Plats</a></li>
+                <li><a href="../boisson/index.php">Boissons</a></li>
+                <li><a href="../reservation/index.php">Réservations</a></li>
+                <li><a href="../heures/index.php">Heures d'ouvertures</a></li>
             </ul>
         </nav>
     </header>
@@ -85,7 +98,7 @@ $boutton .= '</form>';
     </main>
 
     <footer>
-        <p>© 2026 Histoire+ - Tous droits réservés</p>
+        <p>© 2026 Les rives Boréales</p>
     </footer>
 
 </body>

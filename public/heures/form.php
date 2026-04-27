@@ -33,7 +33,7 @@ function html_form_ferme($ferme = 0)
             $resultat .= '<label><input type="radio" name="ferme" value="' . $i . '">';
         }
         $resultat .= $type;
-        $resultat .= '</label>';
+        $resultat .= ' </label>';
     }
     $resultat .= '</fieldset>';
     return $resultat;
@@ -41,7 +41,7 @@ function html_form_ferme($ferme = 0)
 function html_form_heure_ouverture($heure_ouvert = "")
 {
     $resultat = '';
-    $resultat .= '<label>Heures d\'ouverture :';
+    $resultat .= '<label>Heures d\'ouverture: ';
     $resultat .= '<input type="time" name="heure_ouvert" value="' . ($heure_ouvert ?: date("HH:mm")) . '">';
     $resultat .= '</label>';
     return $resultat;
@@ -49,7 +49,7 @@ function html_form_heure_ouverture($heure_ouvert = "")
 function html_form_heure_fermeture($heure_ferme = "")
 {
     $resultat = '';
-    $resultat .= '<label>Heures de fermeture :';
+    $resultat .= '<label>Heures de fermeture: ';
     $resultat .= '<input type="time" name="heure_ferme" value="' . ($heure_ferme ?: date("HH:mm")) . '">';
     $resultat .= '</label>';
     return $resultat;

@@ -13,9 +13,11 @@ while ($enr = $stmt->fetch()) {
     $reservation .= '<a href="modifier.php?id=' . $enr['id'] . '">Modifier la catégorie</a>';
     $reservation .= '</article>';
 }
+$reservation .= '<article class="card">';
+$reservation .= '<h2>Ajouter</h2>';
+$reservation .= '<a href="ajout.php">Ajouter une réservation</a>';
+$reservation .= '</article>';
 $reservation .= '</div>';
-$ajout = '';
-$ajout .= '<a href="ajout.php">Ajouter une réservation</a>';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -29,27 +31,28 @@ $ajout .= '<a href="ajout.php">Ajouter une réservation</a>';
 <body>
 
     <header>
-        <div class="logo">📜 Histoire+</div>
+        <div class="logo">Les Rives Boréales</div>
         <nav>
             <ul>
                 <li><a href="../index.php">Accueil</a></li>
-                <li><a href="#">Personnages</a></li>
-                <li><a href="#">Époques</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="../categorie/index.php">Catégories</a></li>
+                <li><a href="../plat/index.php">Plats</a></li>
+                <li><a href="../boisson/index.php">Boissons</a></li>
+                <li><a href="../reservation/index.php">Réservations</a></li>
+                <li><a href="../heures/index.php">Heures d'ouvertures</a></li>
             </ul>
         </nav>
     </header>
 
     <main class="home">
-        <h1>Les Catégories</h1>
+        <h1>Les Réservations</h1>
 
         <?php echo $reservation; ?>
-        <?php echo $ajout; ?>
 
     </main>
 
     <footer>
-        <p>© 2026 Histoire+ - Tous droits réservés</p>
+        <p>© 2026 Les rives Boréales</p>
     </footer>
 
 </body>
