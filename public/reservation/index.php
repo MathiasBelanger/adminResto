@@ -6,9 +6,10 @@ $stmt->execute();
 $reservation = '';
 $reservation .= '<div class="cards">';
 while ($enr = $stmt->fetch()) {
+    $date = date_create($enr['dateReservation']);
     $reservation .= '<article class="card">';
     $reservation .= '<h2>' . $enr['nom'] . '</h2>';
-    $reservation .= '<h4>' . $enr['dateReservation']->format() . '</h4>';
+    $reservation .= '<h4>' . date_format($date, "Y/m/d H:i:s") . '</h4>';
     $reservation .= '<a href="modifier.php?id=' . $enr['id'] . '">Modifier la catégorie</a>';
     $reservation .= '</article>';
 }
