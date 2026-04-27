@@ -50,6 +50,12 @@
                 <a href="reservation/index.php">Voir la carte</a>
             </article>
 
+            <article class="card">
+                <h2>Heures d'Ouvertures</h2>
+                <p>Les Heures d'Ouvertures</p>
+                <a href="ouverture/index.php">Voir la carte</a>
+            </article>
+
         </div>
 
     </main>
