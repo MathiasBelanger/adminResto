@@ -4,7 +4,7 @@ if (isset($_POST['suprimer'])) {
     $id = $_POST['id'];
 
     $pdo = new PDO("sqlite:../../database/db.sqlite");
-    $suprimer = "DELETE FROM plat WHERE id=:id";
+    $suprimer = "DELETE FROM boisson WHERE id=:id";
     $stmt = $pdo->prepare($suprimer);
     $stmt->execute([":id" => $id]);
     header("location:index.php");
@@ -15,31 +15,36 @@ if (isset($_POST['enregistrer'])) {
     $id = $_POST['id'];
     $nom = $_POST['nom'];
     $categorie_id = $_POST['categorie_id'];
-    $ingredient = $_POST['ingredient'];
+    $origine = $_POST['origine'];
+    $anne = $_POST['anne'];
+    $extra = $_POST['extra'];
+    $pays = $_POST['pays'];
     $prix = $_POST['prix'];
 
     $pdo = new PDO("sqlite:../../database/db.sqlite");
-    $SQL = "UPDATE plat SET ";
+    $SQL = "UPDATE boisson SET ";
     $SQL .= "nom=:nom, ";
     $SQL .= "categorie_id=:categorie_id, ";
-    $SQL .= "ingredient=:ingredient, ";
-    if ($upload) {
-        $SQL .= "image_url=:image_url, ";
-    }
+    $SQL .= "origine=:origine, ";
+    $SQL .= "anne=:anne, ";
+    $SQL .= "extra=:extra, ";
+    $SQL .= "pays=:pays, ";
+    $SQL .= "image_url=:image_url, ";
     $SQL .= "prix=:prix ";
     $SQL .= "WHERE id=:id";
     $stmt = $pdo->prepare($SQL);
     if ($upload) {
         $image_url = "../img/" . $_FILES['image_url']['name'];
         move_uploaded_file($_FILES['image_url']['tmp_name'], __DIR__ . '/' . $image_url);
-    }
+    } else $image_url = '';
     $stmt->bindParam(":nom", $nom);
     $stmt->bindParam(":categorie_id", $categorie_id);
-    $stmt->bindParam(":ingredient", $ingredient);
+    $stmt->bindParam(":origine", $origine);
+    $stmt->bindParam(":anne", $anne);
+    $stmt->bindParam(":extra", $extra);
+    $stmt->bindParam(":pays", $pays);
     $stmt->bindParam(":prix", $prix);
-    if ($upload) {
-        $stmt->bindParam(":image_url", $image_url);
-    }
+    $stmt->bindParam(":image_url", $image_url);
     $stmt->bindParam(":id", $id);
     $stmt->execute();
     header("location:fiche.php?id=" . $id);
@@ -51,7 +56,7 @@ if (!isset($_GET['id'])) {
     die; //or exit
 }
 $id = $_GET['id'];
-$stmt = execute("SELECT * FROM plat WHERE id=:id", [':id' => $id]);
+$stmt = execute("SELECT * FROM boisson WHERE id=:id", [':id' => $id]);
 $info = $stmt->fetch();
 
 $boutton = '<form action="" method="post">';
@@ -67,7 +72,7 @@ $boutton .= '</form>';
 
 <head>
     <meta charset="UTF-8">
-    <title>Fiche - Modifier - Plat></title>
+    <title>Fiche - Modifier - Boisson?></title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 
