@@ -1,25 +1,9 @@
-<?php
-// $bd = "../database/db.sqlite";
-// $pdo = new PDO("sqlite:" . $bd);
-// $stmt = $pdo->prepare("SELECT * FROM personnageshistorique");
-// $stmt->execute();
-// $collection = '';
-// $collection .= '<div class="cards">';
-// while ($enr = $stmt->fetch()) {
-//     $collection .= '<article class="card">';
-//     $collection .= '<h2>' . $enr['nom_complet'] . '</h2>';
-//     $collection .= '<p>' . $enr['description'] . '</p>';
-//     $collection .= '<a href="fiche.php?id=' . $enr['id'] . '">Voir la fiche</a>';
-//     $collection .= '</article>';
-// }
-// $collection .= '</div>';
-?>
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
     <meta charset="UTF-8">
-    <title>Accueil - Histoire+</title>
+    <title>Accueil - Admin</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -52,12 +36,6 @@
                 <h2>Plats</h2>
                 <p>Les plats</p>
                 <a href="plat/index.php">Voir la carte</a>
-            </article>
-
-            <article class="card">
-                <h2>Table d'hôte</h2>
-                <p>Les tables d'hôte</p>
-                <a href="hote/index.php">Voir la carte</a>
             </article>
 
             <article class="card">

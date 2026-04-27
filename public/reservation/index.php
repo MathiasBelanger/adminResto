@@ -1,27 +1,28 @@
 <?php
 $bd = "../../database/db.sqlite";
 $pdo = new PDO("sqlite:" . $bd);
-$stmt = $pdo->prepare("SELECT plat.*,categorie.categorie as nom_categorie from plat INNER JOIN categorie on plat.categorie_id = categorie.id ORDER by categorie");
+$stmt = $pdo->prepare("SELECT * FROM reservation");
 $stmt->execute();
-$plat = '';
-$plat .= '<div class="cards">';
-while ($info = $stmt->fetch()) {
-    $plat .= '<article class="card">';
-    $plat .= '<h2>' . $info["nom_categorie"] . '</h2>';
-    $plat .= '<h4>' . $info['nom'] . '</h4>';
-    $plat .= '<a href="fiche.php?id=' . $info['id'] . '">Voir la fiche</a>';
-    $plat .= '</article>';
+$reservation = '';
+$reservation .= '<div class="cards">';
+while ($enr = $stmt->fetch()) {
+    $date = date_create($enr['dateReservation']);
+    $reservation .= '<article class="card">';
+    $reservation .= '<h2>' . $enr['nom'] . '</h2>';
+    $reservation .= '<h4>' . date_format($date, "Y/m/d H:i:s") . '</h4>';
+    $reservation .= '<a href="modifier.php?id=' . $enr['id'] . '">Modifier la catégorie</a>';
+    $reservation .= '</article>';
 }
-$plat .= '</div>';
+$reservation .= '</div>';
 $ajout = '';
-$ajout .= '<a href="ajout.php">Ajouter un plat</a>';
+$ajout .= '<a href="ajout.php">Ajouter une catégorie</a>';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
     <meta charset="UTF-8">
-    <title>Plat</title>
+    <title>Reservation</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 
@@ -40,9 +41,9 @@ $ajout .= '<a href="ajout.php">Ajouter un plat</a>';
     </header>
 
     <main class="home">
-        <h1>Les plats</h1>
+        <h1>Les Catégories</h1>
 
-        <?php echo $plat; ?>
+        <?php echo $reservation; ?>
         <?php echo $ajout; ?>
 
     </main>

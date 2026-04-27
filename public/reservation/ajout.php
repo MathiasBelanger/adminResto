@@ -1,22 +1,30 @@
 <?php
 include_once("form.php");
 if (isset($_POST['enregistrer'])) {
-    if (isset($_POST['categorie'])) $categorie = $_POST['categorie'];
-    if (isset($_POST['type'])) {
-        $type = 1;
+    if (isset($_POST['nom'])) $nom = $_POST['nom'];
+    if (isset($_POST['nbPersonnes'])) $nbPersonnes = $_POST['nbPersonnes'];
+    if (isset($_POST['dateReservation'])) $dateReservation = $_POST['dateReservation'];
+    if (isset($_POST['email'])) $email = $_POST['email'];
+    if (isset($_POST['cellulaire'])) $cellulaire = $_POST['cellulaire'];
+    if (isset($_POST['choixIntExt'])) {
+        $choixIntExt = 1;
     } else {
-        $type = 0;
+        $choixIntExt = 0;
     }
 
     $pdo = new PDO("sqlite:../../database/db.sqlite");
-    $SQL = "INSERT INTO categorie(categorie, type) VALUES ";
+    $SQL = "INSERT INTO reservation(nom, nbPersonnes, dateReservation, email, cellulaire, choixIntExt) VALUES ";
     $SQL .= "(";
-    $SQL .= ":categorie ,";
-    $SQL .= ":type ";
+    $SQL .= ":nom,";
+    $SQL .= ":nbPersonnes,";
+    $SQL .= ":dateReservation,";
+    $SQL .= ":email,";
+    $SQL .= ":cellulaire,";
+    $SQL .= ":choixIntExt ";
     $SQL .= ")";
 
     $stmt = $pdo->prepare($SQL);
-    $stmt->execute([':categorie' => $categorie, ':type' => $type]);
+    $stmt->execute([':nom' => $nom, ':choixIntExt' => $choixIntExt, ':nbPersonnes' => $nbPersonnes, ':dateReservation' => $dateReservation, ':email' => $email, ':cellulaire' => $cellulaire]);
     header("location:index.php");
     exit;
 }
@@ -31,7 +39,7 @@ $info = $stmt->fetch();
 
 <head>
     <meta charset="UTF-8">
-    <title>Fiche - Ajout - Categorie</title>
+    <title>Fiche - Ajout - Reservation</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 

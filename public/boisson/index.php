@@ -21,7 +21,7 @@ $ajout .= '<a href="ajout.php">Ajouter une boisson</a>';
 
 <head>
     <meta charset="UTF-8">
-    <title>Accueil - Histoire+</title>
+    <title>Boisson</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 
