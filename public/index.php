@@ -49,6 +49,11 @@
                 <p>Les Réservations</p>
                 <a href="reservation/index.php">Voir la carte</a>
             </article>
+            <article class="card">
+                <h2>Heures d'ouvertures</h2>
+                <p>Les heures d'ouvertures</p>
+                <a href="heures/index.php">Voir la carte</a>
+            </article>
 
         </div>
 
