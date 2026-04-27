@@ -4,11 +4,11 @@ function html_form($info = [])
     $resultat = '';
     $resultat .= '<form action="" method="post" enctype="multipart/form-data">';
     $resultat .= html_form_nom($info['nom'] ?? "");
-    $resultat .= html_form_nbrPersonnes($info['nbrPersonnes'] ?? "");
+    $resultat .= html_form_nbPersonnes($info['nbPersonnes'] ?? "");
     $resultat .= html_form_dateReservation($info['dateReservation'] ?? "");
     $resultat .= html_form_email($info['email'] ?? "");
     $resultat .= html_form_cellulaire($info['cellulaire'] ?? "");
-    $resultat .= html_form_exterieur($info['choixExterieur'] ?? 0);
+    $resultat .= html_form_exterieur($info['choixIntExt'] ?? 0);
 
     $resultat .= '<label><input type="checkbox" required>    Je confirme les modifications</label>';
     if (isset($info['id'])) {
@@ -31,11 +31,11 @@ function html_form_nom($nom = "")
     return $resultat;
 }
 
-function html_form_nbrPersonnes($nbrPersonnes = "")
+function html_form_nbPersonnes($nbPersonnes = "")
 {
     $resultat = '';
     $resultat .= '<label>Nombre de personnes :';
-    $resultat .= '<input type="number" name="nbrPersonnes" value="' . $nbrPersonnes . '">';
+    $resultat .= '<input type="number" name="nbPersonnes" value="' . $nbPersonnes . '">';
     $resultat .= '</label>';
     return $resultat;
 }
@@ -52,7 +52,7 @@ function html_form_dateReservation($dateReservation = "")
 function html_form_email($email = "")
 {
     $resultat = '';
-    $resultat .= '<label>eMail :';
+    $resultat .= '<label>Email :';
     $resultat .= '<input type="email" name="email" value="' . $email . '">';
     $resultat .= '</label>';
     return $resultat;
@@ -79,9 +79,9 @@ function html_form_exterieur($exterieur = 0)
     foreach ($types as $i => $type) {
         echo $i;
         if ($exterieur == $i) {
-            $resultat .= '<label><input type="radio" name="choixExterieur" value="' . $i . '" checked>';
+            $resultat .= '<label><input type="radio" name="choixIntExt" value="' . $i . '" checked>';
         } else {
-            $resultat .= '<label><input type="radio" name="choixExterieur" value="' . $i . '">';
+            $resultat .= '<label><input type="radio" name="choixIntExt" value="' . $i . '">';
         }
         $resultat .= $type;
         $resultat .= '</label>';

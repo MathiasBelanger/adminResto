@@ -2,29 +2,29 @@
 include_once("form.php");
 if (isset($_POST['enregistrer'])) {
     if (isset($_POST['nom'])) $nom = $_POST['nom'];
-    if (isset($_POST['nbrPersonnes'])) $nbrPersonnes = $_POST['nbrPersonnes'];
+    if (isset($_POST['nbPersonnes'])) $nbPersonnes = $_POST['nbPersonnes'];
     if (isset($_POST['dateReservation'])) $dateReservation = $_POST['dateReservation'];
     if (isset($_POST['email'])) $email = $_POST['email'];
     if (isset($_POST['cellulaire'])) $cellulaire = $_POST['cellulaire'];
-    if (isset($_POST['choixExterieur'])) {
-        $choixExterieur = 1;
+    if (isset($_POST['choixIntExt'])) {
+        $choixIntExt = 1;
     } else {
-        $choixExterieur = 0;
+        $choixIntExt = 0;
     }
 
     $pdo = new PDO("sqlite:../../database/db.sqlite");
-    $SQL = "INSERT INTO reservation(nom, nbrPersonnes, dateReservation, email, cellulaire, choixExterieur) VALUES ";
+    $SQL = "INSERT INTO reservation(nom, nbPersonnes, dateReservation, email, cellulaire, choixIntExt) VALUES ";
     $SQL .= "(";
     $SQL .= ":nom,";
-    $SQL .= ":nbrPersonnes,";
+    $SQL .= ":nbPersonnes,";
     $SQL .= ":dateReservation,";
     $SQL .= ":email,";
     $SQL .= ":cellulaire,";
-    $SQL .= ":choixExterieur ";
+    $SQL .= ":choixIntExt ";
     $SQL .= ")";
 
     $stmt = $pdo->prepare($SQL);
-    $stmt->execute([':nom' => $nom, ':choixExterieur' => $choixExterieur, ':nbrPersonnes' => $nbrPersonnes, ':dateReservation' => $dateReservation, ':email' => $email, ':cellulaire' => $cellulaire]);
+    $stmt->execute([':nom' => $nom, ':choixIntExt' => $choixIntExt, ':nbPersonnes' => $nbPersonnes, ':dateReservation' => $dateReservation, ':email' => $email, ':cellulaire' => $cellulaire]);
     header("location:index.php");
     exit;
 }
