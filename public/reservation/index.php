@@ -9,13 +9,13 @@ while ($enr = $stmt->fetch()) {
     $date = date_create($enr['dateReservation']);
     $reservation .= '<article class="card">';
     $reservation .= '<h2>' . $enr['nom'] . '</h2>';
-    $reservation .= '<h4>' . date_format($date, "Y/m/d H:i:s") . '</h4>';
+    $reservation .= '<h4>' . date_format($date, "Y/m/d H:i") . '</h4>';
     $reservation .= '<a href="modifier.php?id=' . $enr['id'] . '">Modifier la catégorie</a>';
     $reservation .= '</article>';
 }
 $reservation .= '</div>';
 $ajout = '';
-$ajout .= '<a href="ajout.php">Ajouter une catégorie</a>';
+$ajout .= '<a href="ajout.php">Ajouter une réservation</a>';
 ?>
 <!DOCTYPE html>
 <html lang="fr">

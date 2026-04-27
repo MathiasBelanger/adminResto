@@ -52,7 +52,7 @@ $boutton .= '</form>';
 
 <head>
     <meta charset="UTF-8">
-    <title>Fiche - Modifier - Plat?></title>
+    <title>Fiche - Modifier - Plat></title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 
