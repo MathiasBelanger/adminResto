@@ -2,33 +2,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap%27');
 @import url("https://use.typekit.net/kba0icq.css");
 
-h2,h3,h4{
+h2,
+h3,
+h4 {
     font-family: "Cynzel", serif;
     font-optical-sizing: auto;
     font-style: normal;
 }
 
-.logo,h1{
+.logo,
+h1 {
     font-family: "Cochin-lt-pro", sans-serif;
     font-optical-sizing: auto;
     font-style: italic;
 }
-p,a,button,label,input{
+
+p,
+a,
+button,
+label,
+input {
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
 }
 
-img{
+a:hover{
+    color: var(--couleur-texte);
+}
+
+img {
     max-height: 10em;
     max-width: 20em;
 }
 
-label{
+label {
     padding: 1em;
 }
 
-form{
+form {
     margin-top: 1em;
 }
 
@@ -44,6 +56,7 @@ form{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: 0.2s;
 }
 
 body {
@@ -66,6 +79,9 @@ header {
 
     nav {
         margin-top: 0.5rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
 
         ul {
             list-style: none;
@@ -97,13 +113,14 @@ main {
         flex-direction: row;
     }
 
-    >a{
+    >a {
         padding: 1em;
         text-align: center;
         text-decoration: none;
         color: var(--couleur-secondaire);
         font-size: 1.5em;
-        &:hover{
+
+        &:hover {
             color: var(--couleur-texte);
         }
     }
@@ -131,6 +148,17 @@ main {
 
 .content {
     width: 75%;
+    >a {
+        padding: 1em;
+        text-align: center;
+        text-decoration: none;
+        color: var(--couleur-secondaire);
+        font-size: 1.5em;
+
+        &:hover {
+            color: var(--couleur-texte);
+        }
+    }
 }
 
 /* FICHE */
@@ -183,7 +211,7 @@ form {
     }
 
     button:hover {
-        background: hsl(45, 80%, 45%);
+        background: var(--couleur-primaire);
     }
 }
 
@@ -202,19 +230,23 @@ form {
         padding: 1rem;
         box-shadow: var(--ombre);
         width: 30%;
-        
-        article{
+
+        article {
             display: flex;
             flex-direction: column;
             align-content: flex-start;
         }
-        
+
         a {
             display: inline-block;
             margin-top: 1rem;
             text-decoration: none;
             color: var(--couleur-primaire);
             font-weight: bold;
+
+            &:hover{
+                color: var(--couleur-texte);
+            }
         }
     }
 }
