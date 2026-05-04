@@ -16,8 +16,8 @@ function html_header()
     $resultat .= '<li><a href="../ouverture/index.php">Heures d\'Ouvertures</a></li>';
     $resultat .= '</ul>';
     $resultat .= '<ul>';
-    $resultat .= '<li><a href="../utilisateur/ajout.php">Ajouter un administrateur</a></li>';
-    $resultat .= '<li><a href="../deconnection.php">Déconnection</a></li>';
+    $resultat .= '<li><a href="../utilisateur/index.php">Administrateurs</a></li>';
+    $resultat .= '<li><a href="../deconnexion.php">Déconnexion</a></li>';
     $resultat .= '</ul>';
     $resultat .= '</nav>';
     $resultat .= '</header>';

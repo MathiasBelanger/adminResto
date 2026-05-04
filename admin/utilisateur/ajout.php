@@ -21,7 +21,7 @@ if (isset($_POST['enregistrer'])) {
             "mdp" => $mdp,
         ]);
     
-        header("location:../connexion.php");
+        header("index.php");
         exit;
     }
 }

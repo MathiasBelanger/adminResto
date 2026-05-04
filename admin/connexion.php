@@ -41,7 +41,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
@@ -57,7 +57,6 @@
         Mot de passe :<input type="password" name="mdp">
         <input type="submit">
     </form>
-    <a href="utilisateur/ajout.php">AJOUT</a>
 </body>
 
 </html>

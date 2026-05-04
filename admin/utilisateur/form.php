@@ -3,7 +3,7 @@ function html_form($info = [])
 {
     $resultat = '';
     $resultat .= '<form action="" method="post" enctype="multipart/form-data">';
-    $resultat .= html_form_infos();
+    $resultat .= html_form_infos($info["courriel"]);
 
     $resultat .= '<label><input type="checkbox" required>    Je confirme les modifications</label>';
     if (isset($info['id'])) {
@@ -17,10 +17,10 @@ function html_form($info = [])
     return $resultat;
 }
 
-function html_form_infos()
+function html_form_infos($courriel)
 {
     $resultat = '';
-    $resultat .= 'Courriel :<input type="text" name="courriel">';
-    $resultat .= 'Mot de passe :<input type="password" name="mdp">';
+    $resultat .= '<p>Courriel :</p><input type="text" name="courriel" value="' . $courriel . '">';
+    $resultat .= '<p>Mot de passe :</p><input type="password" name="mdp">';
     return $resultat;
 }
