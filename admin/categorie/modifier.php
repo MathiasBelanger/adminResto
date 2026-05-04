@@ -1,6 +1,9 @@
 <?php
 include_once("form.php");
-include_once("../nonContenu.php");
+require("../nonContenu.php");
+
+verifierAdmin();
+
 if (isset($_POST['suprimer'])) {
     $id = $_POST['id'];
 

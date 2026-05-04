@@ -1,6 +1,9 @@
 <?php
 include_once("form.php");
-include_once("../nonContenu.php");
+require("../nonContenu.php");
+
+verifierAdmin();
+
 if (isset($_POST['enregistrer'])) {
     if (isset($_POST['nom'])) $nom = $_POST['nom'];
     if (isset($_POST['nbPersonnes'])) $nbPersonnes = $_POST['nbPersonnes'];

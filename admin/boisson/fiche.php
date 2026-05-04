@@ -1,5 +1,8 @@
 <?php
-include_once("../nonContenu.php");
+require("../nonContenu.php");
+
+verifierAdmin();
+
 if (!isset($_GET['id'])) {
     header("location:index.php");
     die; //or exit

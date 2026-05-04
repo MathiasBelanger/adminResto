@@ -1,10 +1,16 @@
 <?php
+session_start();
+
 function html_header()
 {
     $resultat = '';
     $resultat .= '<header>';
     $resultat .= '<div class="logo">Les Rives Boréales</div>';
     $resultat .= '<nav>';
+    $resultat .= '<ul>';
+    $resultat .= '<li><a href="../connexion.php">Connexion</a></li>';
+    $resultat .= '<li><a href="../deconnexion.php">Déconnexion</a></li>';
+    $resultat .= '</ul>';
     $resultat .= '<ul>';
     $resultat .= '<li><a href="../index.php">Accueil</a></li>';
     $resultat .= '<li><a href="../categorie/index.php">Catégories</a></li>';
@@ -25,4 +31,12 @@ function html_footer()
     $resultat .= '<p>© 2026 Les Rives Boréales - Tous droits réservés</p>';
     $resultat .= '</footer>';
     return $resultat;
+}
+
+function verifierAdmin()
+{
+    if (!isset($_SESSION["connecte"]) || $_SESSION["connecte"] != true) {
+        header("location: connexion.php");
+        exit;
+    }
 }

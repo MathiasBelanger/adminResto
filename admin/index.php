@@ -1,4 +1,11 @@
-<?php include_once("nonContenu.php"); ?>
+<?php
+include_once("nonContenu.php");
+
+if (!isset($_SESSION["connecte"]) || $_SESSION["connecte"] != true) {
+    header("location: connexion.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -11,18 +18,18 @@
 <body>
 
     <?php echo html_header(); ?>
-    
+
     <main class="home">
         <h1>Les tableaux modifiables</h1>
-        
+
         <div class="cards">
-            
+
             <article class="card">
                 <h2>Catégories</h2>
                 <p>Catégories des tables (Entrées,vin,dessert,etc.)</p>
                 <a href="categorie/index.php">Voir la carte</a>
             </article>
-            
+
             <article class="card">
                 <h2>Plats</h2>
                 <p>Les plats</p>
@@ -34,21 +41,21 @@
                 <p>Les Boissons</p>
                 <a href="boisson/index.php">Voir la carte</a>
             </article>
-            
+
             <article class="card">
                 <h2>Réservations</h2>
                 <p>Les Réservations</p>
                 <a href="reservation/index.php">Voir la carte</a>
             </article>
-            
+
             <article class="card">
                 <h2>Heures d'Ouvertures</h2>
                 <p>Les Heures d'Ouvertures</p>
                 <a href="ouverture/index.php">Voir la carte</a>
             </article>
-            
+
         </div>
-        
+
     </main>
 
     <?php echo html_footer(); ?>

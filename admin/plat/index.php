@@ -1,5 +1,8 @@
 <?php
-include_once("../nonContenu.php");
+require("../nonContenu.php");
+
+verifierAdmin();
+
 $bd = "../../database/db.sqlite";
 $pdo = new PDO("sqlite:" . $bd);
 $stmt = $pdo->prepare("SELECT plat.*,categorie.categorie as nom_categorie from plat INNER JOIN categorie on plat.categorie_id = categorie.id ORDER by categorie");
