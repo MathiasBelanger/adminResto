@@ -7,7 +7,7 @@ if (isset($_POST['suprimer'])) {
     $suprimer = "DELETE FROM categorie WHERE id=:id";
     $stmt = $pdo->prepare($suprimer);
     $stmt->execute([":id" => $id]);
-    header("location:index.php");
+    header("location:index.php?suprimer=1");
     exit;
 }
 if (isset($_POST['enregistrer'])) {
@@ -25,7 +25,7 @@ if (isset($_POST['enregistrer'])) {
     $stmt->bindParam(":type", $type);
     $stmt->bindParam(":id", $id);
     $stmt->execute();
-    header("location:index.php");
+    header("location:index.php?succes=1");
     exit;
 }
 
@@ -68,6 +68,7 @@ $boutton .= '</form>';
                 <li><a href="../boisson/index.php">Boissons</a></li>
                 <li><a href="../reservation/index.php">Réservations</a></li>
                 <li><a href="../heures/index.php">Heures d'ouvertures</a></li>
+                <li><a href="../utilisateurs/index.php">Compte Admin</a></li>
             </ul>
         </nav>
     </header>

@@ -25,7 +25,7 @@ if (isset($_POST['enregistrer'])) {
 
     $stmt = $pdo->prepare($SQL);
     $stmt->execute([':nom' => $nom, ':choixIntExt' => $choixIntExt, ':nbPersonnes' => $nbPersonnes, ':dateReservation' => $dateReservation, ':email' => $email, ':cellulaire' => $cellulaire]);
-    header("location:index.php");
+    header("location:index.php?succes=1");
     exit;
 }
 
@@ -55,6 +55,7 @@ $info = $stmt->fetch();
                 <li><a href="../boisson/index.php">Boissons</a></li>
                 <li><a href="../reservation/index.php">Réservations</a></li>
                 <li><a href="../heures/index.php">Heures d'ouvertures</a></li>
+                <li><a href="../utilisateurs/index.php">Compte Admin</a></li>
             </ul>
         </nav>
     </header>

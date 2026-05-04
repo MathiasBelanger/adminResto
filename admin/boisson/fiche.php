@@ -11,7 +11,7 @@ $stmt->execute([':id' => $id]);
 $info = $stmt->fetch();
 $boutton = '';
 $boutton .= '<a href="modifier.php?id=' . $info['id'] . '">Modifier la fiche</a>';
-
+$succes = isset($_GET["succes"]);
 $image = '';
 if ((isset($info['image_url'])) && $info['image_url'] != '') {
     $image .= '<img src="' . $info['image_url'] . '" alt="image_de_' . $info['nom'] . '">';
@@ -38,6 +38,7 @@ if ((isset($info['image_url'])) && $info['image_url'] != '') {
                 <li><a href="../boisson/index.php">Boissons</a></li>
                 <li><a href="../reservation/index.php">Réservations</a></li>
                 <li><a href="../heures/index.php">Heures d'ouvertures</a></li>
+                <li><a href="../utilisateurs/index.php">Compte Admin</a></li>
             </ul>
         </nav>
     </header>
@@ -47,7 +48,9 @@ if ((isset($info['image_url'])) && $info['image_url'] != '') {
         <section class="content">
 
             <h1><?php echo $info['nom'] ?></h1>
-
+            <?php if ($succes): ?>
+                <p class="succes">Page modifier/ajouter avec succès</p>
+            <?php endif; ?>
             <article class="fiche">
                 <?php echo $image ?>
                 <ul>

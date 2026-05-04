@@ -1,39 +1,29 @@
 <?php
-$bd = "../../database/db.sqlite";
-$pdo = new PDO("sqlite:" . $bd);
-$stmt = $pdo->prepare("SELECT * FROM categorie");
+require("../includes/init.php");
+$stmt = $bdd->prepare("SELECT * FROM utilisateurs");
 $stmt->execute();
 $suprimer = isset($_GET["suprimer"]);
 $succes = isset($_GET["succes"]);
-$categorie = '';
-$categorie .= '<div class="cards">';
+$utilisateurs = '';
+$utilisateurs .= '<div class="cards">';
 while ($enr = $stmt->fetch()) {
-    $types = [
-        "Nourriture",
-        "Boisson",
-    ];
-    $categorie .= '<article class="card">';
-    $categorie .= '<h2>' . $enr['categorie'] . '</h2>';
-    foreach ($types as $i => $type) {
-        if ($enr['type'] == $i) {
-            $categorie .= '<h4>' . $type . '</h4>';
-        }
-    }
-    $categorie .= '<a href="modifier.php?id=' . $enr['id'] . '">Modifier la catégorie</a>';
-    $categorie .= '</article>';
+    $utilisateurs .= '<article class="card">';
+    $utilisateurs .= '<h4>' .  $enr['courriel'] . '</h4>';
+    $utilisateurs .= '<a href="modifier.php?id=' . $enr['id'] . '">Modifier le compte</a>';
+    $utilisateurs .= '</article>';
 }
-$categorie .= '<article class="card">';
-$categorie .= '<h2>Ajouter</h2>';
-$categorie .= '<a href="ajout.php">Ajouter une catégorie</a>';
-$categorie .= '</article>';
-$categorie .= '</div>';
+$utilisateurs .= '<article class="card">';
+$utilisateurs .= '<h2>Ajouter</h2>';
+$utilisateurs .= '<a href="ajout.php">Ajouter un compte</a>';
+$utilisateurs .= '</article>';
+$utilisateurs .= '</div>';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
     <meta charset="UTF-8">
-    <title>Categorie</title>
+    <title>utilisateurs</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 
@@ -55,14 +45,14 @@ $categorie .= '</div>';
     </header>
 
     <main class="home">
-        <h1>Les Catégories</h1>
+        <h1>Les Comptes Admin</h1>
         <?php if ($suprimer): ?>
             <p class="succes">Page suprimer avec succès</p>
         <?php endif; ?>
         <?php if ($succes): ?>
             <p class="succes">Page modifier/ajouter avec succès</p>
         <?php endif; ?>
-        <?php echo $categorie; ?>
+        <?php echo $utilisateurs; ?>
 
     </main>
 

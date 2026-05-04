@@ -1,42 +1,42 @@
 <?php
+require("../includes/init.php");
 include_once("form.php");
 if (isset($_POST['enregistrer'])) {
-    if (isset($_POST['categorie'])) $categorie = $_POST['categorie'];
-    if (isset($_POST['type'])) {
-        $type = 1;
-    } else {
-        $type = 0;
-    }
+    if (isset($_POST['courriel'])) $courriel = $_POST['courriel'];
+    if (isset($_POST['mdp'])) $mdp = $_POST['mdp'];
 
-    $pdo = new PDO("sqlite:../../database/db.sqlite");
-    $SQL = "INSERT INTO categorie(categorie, type) VALUES ";
+    $mdp_encrypte = password_hash($mdp, PASSWORD_DEFAULT);
+
+    $SQL = "INSERT INTO utilisateurs(courriel, mdp) VALUES ";
     $SQL .= "(";
-    $SQL .= ":categorie ,";
-    $SQL .= ":type ";
+    $SQL .= ":courriel,";
+    $SQL .= ":mdp ";
     $SQL .= ")";
 
-    $stmt = $pdo->prepare($SQL);
-    $stmt->execute([':categorie' => $categorie, ':type' => $type]);
-    header("location:index.php?succes=1");
-    exit;
-}
+    $stmt = $bdd->prepare($SQL);
 
-$bd = "../../database/db.sqlite";
-$pdo = new PDO("sqlite:" . $bd);
-$stmt = $pdo->prepare("SELECT last_insert_rowid();");
+    $succes = $stmt->execute([
+        "courriel" => $courriel,
+        "mdp" => $mdp_encrypte,
+    ]);
+
+    header("location:index.php?succes=1");
+    exit();
+}
+$stmt = $bdd->prepare("SELECT last_insert_rowid();");
 $info = $stmt->fetch();
 ?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Fiche - Ajout - Categorie</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>connexion</title>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 
 <body>
-
     <header>
         <div class="logo">Les Rives Boréales</div>
         <nav>
@@ -54,15 +54,17 @@ $info = $stmt->fetch();
 
     <main>
         <section class="content">
-            <h1>Ajouter une catégorie</h1>
+
+            <h1>Page de creation de compte</h1>
             <?php echo html_form($info) ?>
         </section>
+
+
     </main>
 
     <footer>
         <p>© 2026 Les rives Boréales</p>
     </footer>
-
 </body>
 
 </html>

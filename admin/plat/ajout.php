@@ -19,12 +19,20 @@ if (isset($_POST['enregistrer'])) {
 
     $stmt = $pdo->prepare($SQL);
     if ($upload) {
-        $image_url = "../img/" . $_FILES['image_url']['name'];
-        move_uploaded_file($_FILES['image_url']['tmp_name'], __DIR__ . '/' . $image_url);
+        $nom_fichier = date("h-i-s_H-m-s") . "_" . random_int(100000, 999999);
+        $extension = strtolower(pathinfo($_FILES["image_url"]["name"], PATHINFO_EXTENSION));
+        $extensions_permises = ["jpg", "png", "webp", "gif", "avif", "svg"];
+        $image_url = "../img/" .  $_FILES['image_url']['name'] . $nom_fichier . "." . $extension;
+        if (in_array($extension, $extensions_permises)) {
+            $transfert_ok = move_uploaded_file($_FILES['image_url']['tmp_name'], __DIR__ . '/' . $image_url);
+        } else {
+            $image_url = '';
+            $erreur = true;
+        }
     } else $image_url = '';
     $stmt->execute([':ingredient' => $ingredient, ':categorie_id' => $categorie_id, ':nom' => $nom, ':image_url' => $image_url, ':prix' => $prix]);
     $id = $pdo->lastInsertId();
-    header("location:fiche.php?id=" . $id);
+    header("location:fiche.php?id=" . $id . "&succes=1");
     exit;
 }
 
@@ -50,6 +58,7 @@ if (isset($_POST['enregistrer'])) {
                 <li><a href="../boisson/index.php">Boissons</a></li>
                 <li><a href="../reservation/index.php">Réservations</a></li>
                 <li><a href="../heures/index.php">Heures d'ouvertures</a></li>
+                <li><a href="../utilisateurs/index.php">Compte Admin</a></li>
             </ul>
         </nav>
     </header>

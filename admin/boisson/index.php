@@ -3,6 +3,7 @@ $bd = "../../database/db.sqlite";
 $pdo = new PDO("sqlite:" . $bd);
 $stmt = $pdo->prepare("SELECT boisson.*,categorie.categorie as nom_categorie from boisson INNER JOIN categorie on boisson.categorie_id = categorie.id ORDER by categorie");
 $stmt->execute();
+$suprimer = isset($_GET["suprimer"]);
 $boisson = '';
 $boisson .= '<div class="cards">';
 while ($info = $stmt->fetch()) {
@@ -39,13 +40,16 @@ $boisson .= '</div>';
                 <li><a href="../boisson/index.php">Boissons</a></li>
                 <li><a href="../reservation/index.php">Réservations</a></li>
                 <li><a href="../heures/index.php">Heures d'ouvertures</a></li>
+                <li><a href="../utilisateurs/index.php">Compte Admin</a></li>
             </ul>
         </nav>
     </header>
 
     <main class="home">
         <h1>Les Boissons</h1>
-
+        <?php if ($suprimer): ?>
+            <p class="succes">Page suprimer avec succès</p>
+        <?php endif; ?>
         <?php echo $boisson; ?>
 
     </main>

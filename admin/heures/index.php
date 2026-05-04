@@ -3,6 +3,7 @@ $bd = "../../database/db.sqlite";
 $pdo = new PDO("sqlite:" . $bd);
 $stmt = $pdo->prepare("SELECT * FROM heures");
 $stmt->execute();
+$succes = isset($_GET["succes"]);
 $heures = '';
 $heures .= '<div class="cards">';
 while ($enr = $stmt->fetch()) {
@@ -38,13 +39,16 @@ $heures .= '</div>';
                 <li><a href="../boisson/index.php">Boissons</a></li>
                 <li><a href="../reservation/index.php">Réservations</a></li>
                 <li><a href="../heures/index.php">Heures d'ouvertures</a></li>
+                <li><a href="../utilisateurs/index.php">Compte Admin</a></li>
             </ul>
         </nav>
     </header>
 
     <main class="home">
         <h1>Les heures d'ouvertures</h1>
-
+        <?php if ($succes): ?>
+            <p class="succes">Heure modifier avec succès</p>
+        <?php endif; ?>
         <?php echo $heures; ?>
 
     </main>

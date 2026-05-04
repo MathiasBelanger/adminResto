@@ -1,2 +1,2 @@
 #!/bin/bash
-php -S localhost:8000 -t admin
+php -S localhost:8000

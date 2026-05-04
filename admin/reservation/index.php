@@ -1,8 +1,10 @@
 <?php
 $bd = "../../database/db.sqlite";
 $pdo = new PDO("sqlite:" . $bd);
-$stmt = $pdo->prepare("SELECT * FROM reservation");
+$stmt = $pdo->prepare("SELECT * FROM reservation ORDER by created_at");
 $stmt->execute();
+$suprimer = isset($_GET["suprimer"]);
+$succes = isset($_GET["succes"]);
 $reservation = '';
 $reservation .= '<div class="cards">';
 while ($enr = $stmt->fetch()) {
@@ -18,6 +20,7 @@ $reservation .= '<h2>Ajouter</h2>';
 $reservation .= '<a href="ajout.php">Ajouter une réservation</a>';
 $reservation .= '</article>';
 $reservation .= '</div>';
+$reservation .= '<a href="exporter.php">Exporter en format CSV</a>';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -40,13 +43,19 @@ $reservation .= '</div>';
                 <li><a href="../boisson/index.php">Boissons</a></li>
                 <li><a href="../reservation/index.php">Réservations</a></li>
                 <li><a href="../heures/index.php">Heures d'ouvertures</a></li>
+                <li><a href="../utilisateurs/index.php">Compte Admin</a></li>
             </ul>
         </nav>
     </header>
 
     <main class="home">
         <h1>Les Réservations</h1>
-
+        <?php if ($suprimer): ?>
+            <p class="succes">Page suprimer avec succès</p>
+        <?php endif; ?>
+        <?php if ($succes): ?>
+            <p class="succes">Page modifier/ajouter avec succès</p>
+        <?php endif; ?>
         <?php echo $reservation; ?>
 
     </main>

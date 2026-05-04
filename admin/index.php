@@ -1,3 +1,7 @@
+<?php
+require("includes/init.php");
+verifierAdmin();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -19,6 +23,7 @@
                 <li><a href="boisson/index.php">Boissons</a></li>
                 <li><a href="reservation/index.php">Réservations</a></li>
                 <li><a href="heures/index.php">Heures d'ouvertures</a></li>
+                <li><a href="utilisateurs/index.php">Compte Admin</a></li>
             </ul>
         </nav>
     </header>
@@ -56,8 +61,17 @@
                 <p>Les heures d'ouvertures</p>
                 <a href="heures/index.php">Voir la carte</a>
             </article>
+            <article class="card">
+                <h2>Comptes admin</h2>
+                <p>Les comptes admin</p>
+                <a href="utilisateurs/index.php">Voir les comptes</a>
+            </article>
 
         </div>
+
+        <p>
+            <a href="deconnexion.php">Se déconnecter</a>
+        </p>
 
     </main>
 
