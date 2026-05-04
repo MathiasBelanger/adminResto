@@ -1,23 +1,36 @@
 <?php
 include_once("form.php");
-include_once("./admin/nonContenu.php");
+include_once("../nonContenu.php");
 if (isset($_POST['enregistrer'])) {
     if (isset($_POST['nom'])) $nom = $_POST['nom'];
     if (isset($_POST['categorie_id'])) $categorie_id = $_POST['categorie_id'];
     if (isset($_POST['ingredient'])) $ingredient = $_POST['ingredient'];
     if (isset($_POST['prix'])) $prix = $_POST['prix'];
+    $upload = isset($_FILES['image_url']) && is_uploaded_file($_FILES['image_url']['tmp_name']);
+
+    $nom_fichier = date("h-i-s_H-m-s") . "_" . random_int(100000, 999999);
+    $extension = strtolower(pathinfo($_FILES["image_url"]["name"], PATHINFO_EXTENSION));
+    $extensions_permises = ["jpg", "png", "webp", "gif", "avif", "svg"];
+    $url_cible = "../image/" . $nom_fichier . "." . $extension;
 
     $pdo = new PDO("sqlite:../../database/db.sqlite");
-    $SQL = "INSERT INTO plat(nom, categorie_id, ingredient, prix) VALUES ";
+    $SQL = "INSERT INTO plat(nom, categorie_id, ingredient, prix, image_url) VALUES ";
     $SQL .= "(";
     $SQL .= ":nom ,";
     $SQL .= ":categorie_id ,";
     $SQL .= ":ingredient ,";
-    $SQL .= ":prix ";
+    $SQL .= ":prix ,";
+    $SQL .= ":image_url";
     $SQL .= ")";
 
+    
     $stmt = $pdo->prepare($SQL);
-    $stmt->execute([':ingredient' => $ingredient, ':categorie_id' => $categorie_id, ':nom' => $nom, ':prix' => $prix]);
+    if (in_array($extension, $extensions_permises)) {
+        if ($upload) move_uploaded_file($_FILES['image_url']['tmp_name'], $url_cible);
+        else $image_url = '';
+
+        $stmt->execute([':ingredient' => $ingredient, ':categorie_id' => $categorie_id, ':nom' => $nom, ':prix' => $prix, ':image_url' => $url_cible]);
+    }
     header("location:index.php");
     exit;
 }
@@ -33,16 +46,16 @@ if (isset($_POST['enregistrer'])) {
 </head>
 
 <body>
-    <?php html_header(); ?>
-    
+    <?php echo html_header(); ?>
+
     <main>
         <section class="content">
             <h1>Ajouter un plat</h1>
             <?php echo html_form() ?>
         </section>
     </main>
-    
-    <?php html_footer(); ?>
+
+    <?php echo html_footer(); ?>
 </body>
 
 </html>

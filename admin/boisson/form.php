@@ -28,7 +28,6 @@ function html_form($info = [])
     $resultat .= '<button type="submit">Enregistrer</button>';
     $resultat .= '<button type="reset">Réinitialiser</button>';
     $resultat .= '</form>';
-
     return $resultat;
 }
 function html_form_categorie($categorie = "")
@@ -103,7 +102,8 @@ function html_form_image_url()
 {
     $resultat = '';
     $resultat .= '<label>Image: ';
-    $resultat .= '<input type="file" name="image_url" accept="image/*">';
+    $resultat .= '<input type="text" name="titre" placeholder="Titre">';
+    $resultat .= '<input type="file" name="image_url">';
     $resultat .= '</label>';
     return $resultat;
 }

@@ -1,6 +1,6 @@
 <?php
 include_once("form.php");
-include_once("./admin/nonContenu.php");
+include_once("../nonContenu.php");
 if (isset($_POST['enregistrer'])) {
     $id = $_POST['id'];
     $heure_ouverture = $_POST['heure_ouverture'];
@@ -48,7 +48,7 @@ $info = $stmt->fetch();
 </head>
 
 <body>
-    <?php html_header(); ?>
+    <?php echo html_header(); ?>
     
     <main>
         <section class="content">
@@ -61,7 +61,7 @@ $info = $stmt->fetch();
         
     </main>
     
-    <?php html_footer(); ?>
+    <?php echo html_footer(); ?>
 </body>
 
 </html>

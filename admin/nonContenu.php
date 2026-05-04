@@ -7,9 +7,11 @@ function html_header()
     $resultat .= '<nav>';
     $resultat .= '<ul>';
     $resultat .= '<li><a href="../index.php">Accueil</a></li>';
-    $resultat .= '<li><a href="#">Personnages</a></li>';
-    $resultat .= '<li><a href="#">Époques</a></li>';
-    $resultat .= '<li><a href="#">Contact</a></li>';
+    $resultat .= '<li><a href="../categorie/index.php">Catégories</a></li>';
+    $resultat .= '<li><a href="../plat/index.php">Plats</a></li>';
+    $resultat .= '<li><a href="../boisson/index.php">Boissons</a></li>';
+    $resultat .= '<li><a href="../reservation/index.php">Réservations</a></li>';
+    $resultat .= '<li><a href="../ouverture/index.php">Heures d\'Ouvertures</a></li>';
     $resultat .= '</ul>';
     $resultat .= '</nav>';
     $resultat .= '</header>';

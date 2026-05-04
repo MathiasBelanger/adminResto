@@ -15,6 +15,7 @@ function html_form($info = [])
     $resultat .= html_form_categorie($info['categorie_id'] ?? "");
     $resultat .= html_form_ingredient($info['ingredient'] ?? "");
     $resultat .= html_form_prix($info['prix'] ?? "");
+    $resultat .= html_form_image_url();
     
     $resultat .= '<label><input type="checkbox" required>    Je confirme les modifications</label>';
     if (isset($info['id'])) {
@@ -67,6 +68,16 @@ function html_form_prix($prix = "")
     $resultat = '';
     $resultat .= '<label>Prix: ';
     $resultat .= '<input type="text" name="prix" value="' . $prix . '">';
+    $resultat .= '</label>';
+    return $resultat;
+}
+
+function html_form_image_url()
+{
+    $resultat = '';
+    $resultat .= '<label>Image: ';
+    $resultat .= '<input type="text" name="titre" placeholder="Titre">';
+    $resultat .= '<input type="file" name="image_url">';
     $resultat .= '</label>';
     return $resultat;
 }

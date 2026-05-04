@@ -1,5 +1,5 @@
 <?php
-include_once("./admin/nonContenu.php");
+include_once("../nonContenu.php");
 if (!isset($_GET['id'])) {
     header("location:index.php");
     die; //or exit
@@ -23,7 +23,7 @@ $boutton .= '<a href="modifier.php?id=' . $info['id'] . '">Modifier la fiche</a>
 </head>
 
 <body>
-    <?php html_header(); ?>
+    <?php echo html_header(); ?>
     
     <main>
         <section class="content">
@@ -42,7 +42,7 @@ $boutton .= '<a href="modifier.php?id=' . $info['id'] . '">Modifier la fiche</a>
         </section>
     </main>
     
-    <?php html_footer(); ?>
+    <?php echo html_footer(); ?>
 </body>
 
 </html>

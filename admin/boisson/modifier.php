@@ -1,6 +1,6 @@
 <?php
 include_once("form.php");
-include_once("./admin/nonContenu.php");
+include_once("../nonContenu.php");
 if (isset($_POST['suprimer'])) {
     $id = $_POST['id'];
 
@@ -81,7 +81,7 @@ $boutton .= '</form>';
 </head>
 
 <body>
-    <?php html_header(); ?>
+    <?php echo html_header(); ?>
     
     <main>
         <section class="content">
@@ -93,7 +93,7 @@ $boutton .= '</form>';
         
     </main>
     
-    <?php html_footer(); ?>
+    <?php echo html_footer(); ?>
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 <?php
-include_once("./admin/nonContenu.php");
+include_once("../nonContenu.php");
 $bd = "../../database/db.sqlite";
 $pdo = new PDO("sqlite:" . $bd);
 $stmt = $pdo->prepare("SELECT * FROM ouverture");
@@ -29,7 +29,7 @@ $ouverture .= '</div>';
 </head>
 
 <body>
-    <?php html_header(); ?>
+    <?php echo html_header(); ?>
     
     <main class="home">
         <h1>Les Dates d'Ouvertures</h1>
@@ -37,7 +37,7 @@ $ouverture .= '</div>';
         <?php echo $ouverture; ?>
     </main>
     
-    <?php html_footer(); ?>
+    <?php echo html_footer(); ?>
 </body>
 
 </html>

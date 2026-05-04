@@ -1,5 +1,5 @@
 <?php
-include_once("./admin/nonContenu.php");
+include_once("../nonContenu.php");
 $bd = "../../database/db.sqlite";
 $pdo = new PDO("sqlite:" . $bd);
 $stmt = $pdo->prepare("SELECT * FROM reservation");
@@ -28,7 +28,7 @@ $ajout .= '<a href="ajout.php">Ajouter une réservation</a>';
 </head>
 
 <body>
-    <?php html_header(); ?>
+    <?php echo html_header(); ?>
     
     <main class="home">
         <h1>Les Catégories</h1>
@@ -38,7 +38,7 @@ $ajout .= '<a href="ajout.php">Ajouter une réservation</a>';
         
     </main>
     
-    <?php html_footer(); ?>
+    <?php echo html_footer(); ?>
 </body>
 
 </html>

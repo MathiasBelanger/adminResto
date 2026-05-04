@@ -19,6 +19,11 @@ p,a,button,label,input{
     font-style: normal;
 }
 
+img{
+    max-height: 10em;
+    max-width: 20em;
+}
+
 label{
     padding: 1em;
 }
@@ -197,7 +202,13 @@ form {
         padding: 1rem;
         box-shadow: var(--ombre);
         width: 30%;
-
+        
+        article{
+            display: flex;
+            flex-direction: column;
+            align-content: flex-start;
+        }
+        
         a {
             display: inline-block;
             margin-top: 1rem;

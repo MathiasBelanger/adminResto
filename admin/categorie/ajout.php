@@ -1,6 +1,6 @@
 <?php
 include_once("form.php");
-include_once("./admin/nonContenu.php");
+include_once("../nonContenu.php");
 if (isset($_POST['enregistrer'])) {
     if (isset($_POST['categorie'])) $categorie = $_POST['categorie'];
     if (isset($_POST['type'])) {
@@ -38,7 +38,7 @@ $info = $stmt->fetch();
 
 <body>
 
-    <?php html_header(); ?>
+    <?php echo html_header(); ?>
     
     <main>
         <section class="content">
@@ -47,7 +47,7 @@ $info = $stmt->fetch();
         </section>
     </main>
     
-    <?php html_footer(); ?>
+    <?php echo html_footer(); ?>
 </body>
 
 </html>

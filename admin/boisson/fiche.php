@@ -1,5 +1,5 @@
 <?php
-include_once("./admin/nonContenu.php");
+include_once("../nonContenu.php");
 if (!isset($_GET['id'])) {
     header("location:index.php");
     die; //or exit
@@ -25,7 +25,7 @@ $image .='<img src="'.$info["image_url"].'" alt="image">';
 </head>
 
 <body>
-    <?php html_header(); ?>
+    <?php echo html_header(); ?>
     
     <main>
         
@@ -50,7 +50,7 @@ $image .='<img src="'.$info["image_url"].'" alt="image">';
         
     </main>
     
-    <?php html_footer(); ?>
+    <?php echo html_footer(); ?>
 </body>
 
 </html>

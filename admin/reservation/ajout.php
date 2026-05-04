@@ -1,6 +1,6 @@
 <?php
 include_once("form.php");
-include_once("./admin/nonContenu.php");
+include_once("../nonContenu.php");
 if (isset($_POST['enregistrer'])) {
     if (isset($_POST['nom'])) $nom = $_POST['nom'];
     if (isset($_POST['nbPersonnes'])) $nbPersonnes = $_POST['nbPersonnes'];
@@ -46,7 +46,7 @@ $info = $stmt->fetch();
 
 <body>
 
-    <?php html_header(); ?>
+    <?php echo html_header(); ?>
     
     <main>
         <section class="content">
@@ -55,7 +55,7 @@ $info = $stmt->fetch();
         </section>
     </main>
     
-    <?php html_header(); ?>
+    <?php echo html_header(); ?>
 </body>
 
 </html>

@@ -1,6 +1,6 @@
 <?php
 include_once("form.php");
-include_once("./admin/nonContenu.php");
+include_once("../nonContenu.php");
 if (isset($_POST['enregistrer'])) {
     if (isset($_POST['nom'])) $nom = $_POST['nom'];
     if (isset($_POST['categorie_id'])) $categorie_id = $_POST['categorie_id'];
@@ -10,6 +10,11 @@ if (isset($_POST['enregistrer'])) {
     if (isset($_POST['pays'])) $pays = $_POST['pays'];
     if (isset($_POST['prix'])) $prix = $_POST['prix'];
     $upload = isset($_FILES['image_url']) && is_uploaded_file($_FILES['image_url']['tmp_name']);
+
+    $nom_fichier = date("h-i-s_H-m-s") . "_" . random_int(100000, 999999);
+    $extension = strtolower(pathinfo($_FILES["image_url"]["name"], PATHINFO_EXTENSION));
+    $extensions_permises = ["jpg", "png", "webp", "gif", "avif", "svg"];
+    $url_cible = "../image/" . $nom_fichier . "." . $extension;
 
     $pdo = new PDO("sqlite:../../database/db.sqlite");
     $SQL = "INSERT INTO boisson(nom, categorie_id, origine, anne, extra, pays, image_url, prix) VALUES ";
@@ -25,13 +30,13 @@ if (isset($_POST['enregistrer'])) {
     $SQL .= ")";
 
     $stmt = $pdo->prepare($SQL);
-    if($upload){
-        $image_url = "../img/" . $_FILES['image_url']['name'];
-        move_uploaded_file($_FILES['image_url']['tmp_name'], __DIR__ . '/' . $image_url);
+    if (in_array($extension, $extensions_permises)){
+        if ($upload) move_uploaded_file($_FILES['image_url']['tmp_name'], $url_cible);
+        else $image_url = '';
+
+        $stmt->execute([':origine' => $origine, ':categorie_id' => $categorie_id, ':nom' => $nom, ':extra' => $extra, ':anne' => $anne, ':pays' => $pays, ':prix' => $prix, ':image_url' => $url_cible]);
+        $id = $pdo->lastInsertId();
     }
-    else $image_url = '';
-    $stmt->execute([':origine' => $origine, ':categorie_id' => $categorie_id, ':nom' => $nom, ':extra' => $extra, ':anne' => $anne, ':pays' => $pays, ':prix' => $prix, ':image_url' => $image_url]);
-    $id = $pdo->lastInsertId();
     header("location:index.php?id=" . $id);
     exit;
 }

@@ -1,5 +1,5 @@
 <?php
-include_once("./admin/nonContenu.php");
+require("../nonContenu.php");
 $bd = "../../database/db.sqlite";
 $pdo = new PDO("sqlite:" . $bd);
 $stmt = $pdo->prepare("SELECT * FROM categorie");
@@ -35,7 +35,7 @@ $ajout .= '<a href="ajout.php">Ajouter une catégorie</a>';
 </head>
 
 <body>
-    <?php html_header(); ?>
+    <?php echo html_header(); ?>
     
     <main class="home">
         <h1>Les Catégories</h1>
@@ -45,7 +45,7 @@ $ajout .= '<a href="ajout.php">Ajouter une catégorie</a>';
         
     </main>
     
-    <?php html_footer(); ?>
+    <?php echo html_footer(); ?>
 </body>
 
 </html>

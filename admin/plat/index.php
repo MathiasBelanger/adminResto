@@ -1,5 +1,5 @@
 <?php
-include_once("./admin/nonContenu.php");
+include_once("../nonContenu.php");
 $bd = "../../database/db.sqlite";
 $pdo = new PDO("sqlite:" . $bd);
 $stmt = $pdo->prepare("SELECT plat.*,categorie.categorie as nom_categorie from plat INNER JOIN categorie on plat.categorie_id = categorie.id ORDER by categorie");
@@ -10,6 +10,7 @@ while ($info = $stmt->fetch()) {
     $plat .= '<article class="card">';
     $plat .= '<h2>' . $info["nom_categorie"] . '</h2>';
     $plat .= '<h4>' . $info['nom'] . '</h4>';
+    $plat .= '<img src="' . $info['image_url'] . '" alt="' . $info['image_url'] . '">';
     $plat .= '<a href="fiche.php?id=' . $info['id'] . '">Voir la fiche</a>';
     $plat .= '</article>';
 }
@@ -27,7 +28,7 @@ $ajout .= '<a href="ajout.php">Ajouter un plat</a>';
 </head>
 
 <body>
-    <?php html_header(); ?>
+    <?php echo html_header(); ?>
     
     <main class="home">
         <h1>Les plats</h1>
@@ -37,7 +38,7 @@ $ajout .= '<a href="ajout.php">Ajouter un plat</a>';
         
     </main>
     
-    <?php html_footer(); ?>
+    <?php echo html_footer(); ?>
 </body>
 
 </html>

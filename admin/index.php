@@ -1,4 +1,4 @@
-<?php include_once("./admin/nonContenu.php"); ?>
+<?php include_once("nonContenu.php"); ?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -10,7 +10,7 @@
 
 <body>
 
-    <?php html_header(); ?>
+    <?php echo html_header(); ?>
     
     <main class="home">
         <h1>Les tableaux modifiables</h1>
@@ -51,7 +51,7 @@
         
     </main>
 
-    <?php html_header(); ?>
+    <?php echo html_footer(); ?>
 </body>
 
 </html>
