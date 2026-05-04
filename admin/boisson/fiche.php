@@ -46,6 +46,7 @@ $image .='<img src="'.$info["image_url"].'" alt="image">';
                     <li><strong>Extra: </strong><?php echo $info['extra'] ?></li>
                     <li><strong>Région: </strong><?php echo $info['pays'] ?></li>
                     <li><strong>Prix: </strong><?php echo $info['prix'] ?></li>
+                    <img src=<?php echo $info['image_url'] ?> alt=<?php echo $info['image_url'] ?>>
                 </ul>
             </article>
             <?php echo $boutton ?>

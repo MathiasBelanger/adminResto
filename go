@@ -1,2 +1,2 @@
 #!/bin/bash
-D:/xampp/php/php -S localhost:8000 -t admin
+D:/xampp/php/php -S localhost:8000

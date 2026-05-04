@@ -20,19 +20,22 @@ if (isset($_POST['enregistrer'])) {
     $categorie_id = $_POST['categorie_id'];
     $ingredient = $_POST['ingredient'];
     $prix = $_POST['prix'];
+    $image_url = $_POST['image_url'];
 
     $pdo = new PDO("sqlite:../../database/db.sqlite");
     $SQL = "UPDATE plat SET ";
     $SQL .= "nom=:nom, ";
     $SQL .= "categorie_id=:categorie_id, ";
     $SQL .= "ingredient=:ingredient, ";
-    $SQL .= "prix=:prix ";
+    $SQL .= "prix=:prix, ";
+    $SQL .= "image_url=:image_url ";
     $SQL .= "WHERE id=:id";
     $stmt = $pdo->prepare($SQL);
     $stmt->bindParam(":nom", $nom);
     $stmt->bindParam(":categorie_id", $categorie_id);
     $stmt->bindParam(":ingredient", $ingredient);
     $stmt->bindParam(":prix", $prix);
+    $stmt->bindParam(":image_url", $image_url);
     $stmt->bindParam(":id", $id);
     $stmt->execute();
     header("location:index.php");
@@ -41,7 +44,7 @@ if (isset($_POST['enregistrer'])) {
 
 if (!isset($_GET['id'])) {
     header("location:index.php");
-    die; //or exit
+    exit;
 }
 $id = $_GET['id'];
 $stmt = execute("SELECT * FROM plat WHERE id=:id", [':id' => $id]);
