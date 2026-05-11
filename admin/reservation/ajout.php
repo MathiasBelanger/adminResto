@@ -60,7 +60,7 @@ $info = $stmt->fetch();
         </section>
     </main>
     
-    <?php echo html_header(); ?>
+    <?php echo html_footer(); ?>
 </body>
 
 </html>
