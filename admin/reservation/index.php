@@ -20,6 +20,8 @@ while ($enr = $stmt->fetch()) {
 $reservation .= '</div>';
 $ajout = '';
 $ajout .= '<a href="ajout.php">Ajouter une réservation</a>';
+$exportation = '';
+$exportation = '<a href="exporter.php">Exporter les réservations en format CSV</a>';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -38,6 +40,7 @@ $ajout .= '<a href="ajout.php">Ajouter une réservation</a>';
         
         <?php echo $reservation; ?>
         <?php echo $ajout; ?>
+        <?php echo $exportation; ?>
         
     </main>
     
