@@ -41,7 +41,7 @@ $info = $stmt->fetch();
 
 <body>
 
-    <?php echo html_header(); ?>
+    <?php echo html_header(1); ?>
     
     <main>
         <section class="content">

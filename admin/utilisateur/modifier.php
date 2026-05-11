@@ -65,18 +65,15 @@ $boutton .= '</form>';
 </head>
 
 <body>
-    <?php echo html_header(); ?>
-    
+    <?php echo html_header(1); ?>
+
     <main>
         <section class="content">
-            
             <h1><?php echo $info['courriel'] ?></h1>
             <h2>Modifier le courriel</h2>
             <?php echo html_form($info); 
             echo $boutton; ?>
         </section>
-        
-        
     </main>
     
     <?php echo html_footer(); ?>

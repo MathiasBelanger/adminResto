@@ -16,7 +16,7 @@ if (!isset($_SESSION["connecte"]) || $_SESSION["connecte"] != true) {
 </head>
 
 <body>
-    <?php echo html_header(); ?>
+    <?php echo html_header(0); ?>
 
     <main class="home">
         <h1>Les tableaux modifiables</h1>

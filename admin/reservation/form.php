@@ -5,6 +5,7 @@ function html_form($info = [])
     $resultat .= '<form action="" method="post" enctype="multipart/form-data">';
     $resultat .= html_form_nom($info['nom'] ?? "");
     $resultat .= html_form_nbPersonnes($info['nbPersonnes'] ?? "");
+    $resultat .= html_form_detail($info['detail'] ?? "");
     $resultat .= html_form_dateReservation($info['dateReservation'] ?? "");
     $resultat .= html_form_email($info['email'] ?? "");
     $resultat .= html_form_cellulaire($info['cellulaire'] ?? "");
@@ -36,6 +37,15 @@ function html_form_nbPersonnes($nbPersonnes = "")
     $resultat = '';
     $resultat .= '<label>Nombre de personnes :';
     $resultat .= '<input type="number" name="nbPersonnes" value="' . $nbPersonnes . '">';
+    $resultat .= '</label>';
+    return $resultat;
+}
+
+function html_form_detail($detail = "")
+{
+    $resultat = '';
+    $resultat .= '<label>Détailles :';
+    $resultat .= '<input type="text" name="detail" value="' . $detail . '">';
     $resultat .= '</label>';
     return $resultat;
 }

@@ -26,6 +26,7 @@ if (isset($_POST['enregistrer'])) {
     $SQL = "UPDATE reservation SET ";
     $SQL .= "nom=:nom, ";
     $SQL .= "nbPersonnes=:nbPersonnes, ";
+    $SQL .= "detail=:detail, ";
     $SQL .= "dateReservation=:dateReservation, ";
     $SQL .= "email=:email, ";
     $SQL .= "cellulaire=:cellulaire, ";
@@ -34,6 +35,7 @@ if (isset($_POST['enregistrer'])) {
     $stmt = $pdo->prepare($SQL);
     $stmt->bindParam(":nom", $nom);
     $stmt->bindParam(":nbPersonnes", $nbPersonnes);
+    $stmt->bindParam(":detail", $detail);
     $stmt->bindParam(":dateReservation", $dateReservation);
     $stmt->bindParam(":email", $email);
     $stmt->bindParam(":cellulaire", $cellulaire);
@@ -72,7 +74,7 @@ $boutton .= '</form>';
 </head>
 
 <body>
-    <?php echo html_header(); ?>
+    <?php echo html_header(1); ?>
     
     <main>
         <section class="content">

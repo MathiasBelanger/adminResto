@@ -33,7 +33,7 @@ $exportation = '<a href="exporter.php">Exporter les réservations en format CSV<
 </head>
 
 <body>
-    <?php echo html_header(); ?>
+    <?php echo html_header(1); ?>
     
     <main class="home">
         <h1>Les Catégories</h1>

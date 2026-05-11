@@ -38,7 +38,7 @@ $ajout .= '<a href="ajout.php">Ajouter une catégorie</a>';
 </head>
 
 <body>
-    <?php echo html_header(); ?>
+    <?php echo html_header(1); ?>
     
     <main class="home">
         <h1>Les Catégories</h1>

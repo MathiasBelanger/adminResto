@@ -7,6 +7,7 @@ verifierAdmin();
 if (isset($_POST['enregistrer'])) {
     if (isset($_POST['nom'])) $nom = $_POST['nom'];
     if (isset($_POST['nbPersonnes'])) $nbPersonnes = $_POST['nbPersonnes'];
+    if (isset($_POST['detail'])) $detail = $_POST['detail'];
     if (isset($_POST['dateReservation'])) $dateReservation = $_POST['dateReservation'];
     if (isset($_POST['email'])) $email = $_POST['email'];
     if (isset($_POST['cellulaire'])) $cellulaire = $_POST['cellulaire'];
@@ -17,10 +18,11 @@ if (isset($_POST['enregistrer'])) {
     }
 
     $pdo = new PDO("sqlite:../../database/db.sqlite");
-    $SQL = "INSERT INTO reservation(nom, nbPersonnes, dateReservation, email, cellulaire, choixIntExt) VALUES ";
+    $SQL = "INSERT INTO reservation(nom, nbPersonnes, detail, dateReservation, email, cellulaire, choixIntExt) VALUES ";
     $SQL .= "(";
     $SQL .= ":nom,";
     $SQL .= ":nbPersonnes,";
+    $SQL .= ":detail,";
     $SQL .= ":dateReservation,";
     $SQL .= ":email,";
     $SQL .= ":cellulaire,";
@@ -28,7 +30,7 @@ if (isset($_POST['enregistrer'])) {
     $SQL .= ")";
 
     $stmt = $pdo->prepare($SQL);
-    $stmt->execute([':nom' => $nom, ':choixIntExt' => $choixIntExt, ':nbPersonnes' => $nbPersonnes, ':dateReservation' => $dateReservation, ':email' => $email, ':cellulaire' => $cellulaire]);
+    $stmt->execute([':nom' => $nom, ':choixIntExt' => $choixIntExt, ':nbPersonnes' => $nbPersonnes, ':detail' => $detail, ':dateReservation' => $dateReservation, ':email' => $email, ':cellulaire' => $cellulaire]);
     header("location:index.php");
     exit;
 }
@@ -49,7 +51,7 @@ $info = $stmt->fetch();
 
 <body>
 
-    <?php echo html_header(); ?>
+    <?php echo html_header(1); ?>
     
     <main>
         <section class="content">

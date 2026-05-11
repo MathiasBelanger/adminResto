@@ -51,8 +51,7 @@ $info = $stmt->fetch();
 </head>
 
 <body>
-    <?php echo html_header(); ?>
-    
+    <?php echo html_header(1); ?>
     <main>
         <section class="content">
             
@@ -60,8 +59,6 @@ $info = $stmt->fetch();
             <h2>Modifier les heures</h2>
             <?php echo html_form($info) ?>
         </section>
-        
-        
     </main>
     
     <?php echo html_footer(); ?>

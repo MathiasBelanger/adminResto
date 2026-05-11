@@ -32,8 +32,7 @@ $ouverture .= '</div>';
 </head>
 
 <body>
-    <?php echo html_header(); ?>
-    
+    <?php echo html_header(1); ?>
     <main class="home">
         <h1>Les Dates d'Ouvertures</h1>
         

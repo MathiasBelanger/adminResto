@@ -30,14 +30,12 @@ $ajout .= '<a href="ajout.php">Ajouter un Administrateur</a>';
 </head>
 
 <body>
-    <?php echo html_header(); ?>
+    <?php echo html_header(1); ?>
     
     <main class="home">
         <h1>Les Administrateurs</h1>
-        
         <?php echo $reservation; ?>
         <?php echo $ajout; ?>
-        
     </main>
     
     <?php echo html_footer(); ?>

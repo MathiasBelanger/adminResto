@@ -31,7 +31,7 @@ $ajout .= '<a href="ajout.php">Ajouter un plat</a>';
 </head>
 
 <body>
-    <?php echo html_header(); ?>
+    <?php echo html_header(1); ?>
     
     <main class="home">
         <h1>Les plats</h1>
