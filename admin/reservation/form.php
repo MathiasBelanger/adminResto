@@ -8,6 +8,7 @@ function html_form($info = [])
     $resultat .= html_form_nbPersonnes($info['nbPersonnes'] ?? "");
     $resultat .= html_form_dateReservation($info['dateReservation'] ?? "");
     $resultat .= html_form_email($info['email'] ?? "");
+    $resultat .= html_form_description($info['description'] ?? "");
     $resultat .= html_form_cellulaire($info['cellulaire'] ?? "");
     $resultat .= html_form_exterieur($info['choixIntExt'] ?? 0);
 
@@ -55,6 +56,15 @@ function html_form_email($email = "")
     $resultat = '';
     $resultat .= '<label>Email: ';
     $resultat .= '<input type="email" name="email" value="' . $email . '">';
+    $resultat .= '</label>';
+    return $resultat;
+}
+
+function html_form_description($description = "")
+{
+    $resultat = '';
+    $resultat .= '<label>Description: ';
+    $resultat .= '<input type="text" name="description" value="' . $description . '">';
     $resultat .= '</label>';
     return $resultat;
 }

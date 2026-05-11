@@ -13,6 +13,4 @@ foreach ($infos as $info) {
 }
 fclose($fh);
 header("location: reservation.csv");
-// header('Content-Type: text/csv');
-// header('Content-Disposition: attachment; filename="' . $nomFichier . '"');
 die();

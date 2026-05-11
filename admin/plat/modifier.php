@@ -31,7 +31,10 @@ if (isset($_POST['enregistrer'])) {
         $nom_fichier = date("h-i-s_H-m-s") . "_" . random_int(100000, 999999);
         $extension = strtolower(pathinfo($_FILES["image_url"]["name"], PATHINFO_EXTENSION));
         $extensions_permises = ["jpg", "png", "webp", "gif", "avif", "svg"];
-        $image_url = "../img/" .  $_FILES['image_url']['name'] . $nom_fichier . "." . $extension;
+        $search = explode(",", "ç,æ,œ,á,é,í,ó,ú,à,è,ì,ò,ù,ä,ë,ï,ö,ü,ÿ,â,ê,î,ô,û");
+        $replace = explode(",", "c,ae,oe,a,e,i,o,u,a,e,i,o,u,a,e,i,o,u,y,a,e,i,o,u");
+        $nomImage = str_replace($search, $replace, $nom);
+        $image_url = "../img/"  . $nomImage . "_" . $nom_fichier . "." . $extension;
         if (in_array($extension, $extensions_permises)) {
             $transfert_ok = move_uploaded_file($_FILES['image_url']['tmp_name'], __DIR__ . '/' . $image_url);
         } else {

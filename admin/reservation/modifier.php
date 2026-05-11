@@ -16,6 +16,7 @@ if (isset($_POST['enregistrer'])) {
     $nbPersonnes = $_POST['nbPersonnes'];
     $dateReservation = $_POST['dateReservation'];
     $email = $_POST['email'];
+    $description = $_POST['description'];
     $cellulaire = $_POST['cellulaire'];
     $choixIntExt = $_POST['choixIntExt'];
     $pdo = new PDO("sqlite:../../database/db.sqlite");
@@ -24,6 +25,7 @@ if (isset($_POST['enregistrer'])) {
     $SQL .= "nbPersonnes=:nbPersonnes, ";
     $SQL .= "dateReservation=:dateReservation, ";
     $SQL .= "email=:email, ";
+    $SQL .= "description=:description, ";
     $SQL .= "cellulaire=:cellulaire, ";
     $SQL .= "choixIntExt=:choixIntExt ";
     $SQL .= "WHERE id=:id";
@@ -32,6 +34,7 @@ if (isset($_POST['enregistrer'])) {
     $stmt->bindParam(":nbPersonnes", $nbPersonnes);
     $stmt->bindParam(":dateReservation", $dateReservation);
     $stmt->bindParam(":email", $email);
+    $stmt->bindParam(":description", $description);
     $stmt->bindParam(":cellulaire", $cellulaire);
     $stmt->bindParam(":choixIntExt", $choixIntExt);
     $stmt->bindParam(":id", $id);
