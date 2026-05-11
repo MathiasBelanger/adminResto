@@ -15,6 +15,8 @@ $stmt->execute([':id' => $id]);
 $info = $stmt->fetch();
 $boutton = '';
 $boutton .= '<a href="modifier.php?id=' . $info['id'] . '">Modifier la fiche</a>';
+$image ='';
+$image .='<img src="'.$info["image_url"].'" alt="image">';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -39,7 +41,7 @@ $boutton .= '<a href="modifier.php?id=' . $info['id'] . '">Modifier la fiche</a>
                     <li><strong>Catégorie: </strong><?php echo $info["nom_categorie"] ?></li>
                     <li><strong>Description: </strong><?php echo $info['ingredient'] ?></li>
                     <li><strong>Prix: </strong><?php echo $info['prix'] ?></li>
-                    <img src=<?php echo $info['image_url'] ?> alt=<?php echo $info['image_url'] ?>>
+                    <?php echo $image ?>
                 </ul>
             </article>
             <?php echo $boutton ?>

@@ -2,7 +2,7 @@
 include_once("nonContenu.php");
 
 if (!isset($_SESSION["connecte"]) || $_SESSION["connecte"] != true) {
-    header("location: connexion.php");
+    header("location:connexion.php");
     exit;
 }
 ?>
@@ -16,7 +16,6 @@ if (!isset($_SESSION["connecte"]) || $_SESSION["connecte"] != true) {
 </head>
 
 <body>
-
     <?php echo html_header(); ?>
 
     <main class="home">
@@ -53,12 +52,9 @@ if (!isset($_SESSION["connecte"]) || $_SESSION["connecte"] != true) {
                 <p>Les Heures d'Ouvertures</p>
                 <a href="ouverture/index.php">Voir la carte</a>
             </article>
-
         </div>
-
     </main>
 
     <?php echo html_footer(); ?>
 </body>
-
 </html>

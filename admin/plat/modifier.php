@@ -20,7 +20,23 @@ if (isset($_POST['enregistrer'])) {
     $categorie_id = $_POST['categorie_id'];
     $ingredient = $_POST['ingredient'];
     $prix = $_POST['prix'];
-    $image_url = $_POST['image_url'];
+
+    $upload = isset($_FILES['image_url']) && is_uploaded_file($_FILES['image_url']['tmp_name']);
+    if($upload){
+        $search = explode(",", "ç,æ,œ,á,é,í,ó,ú,à,è,ì,ò,ù,ä,ë,ï,ö,ü,ÿ,â,ê,î,ô,û");
+        $replace = explode(",", "c,ae,oe,a,e,i,o,u,a,e,i,o,u,a,e,i,o,u,y,a,e,i,o,u");
+        $nomSansSterifs = str_replace($search, $replace, mb_strtolower($nom));
+
+        $nom_fichier = date("h-i-s_H-m-s") . "_" . random_int(100000, 999999);
+        $extension = strtolower(pathinfo($_FILES["image_url"]["name"], PATHINFO_EXTENSION));
+        $extensions_permises = ["jpg", "png", "webp", "gif", "avif", "svg"];
+        $image_url = "../image/" . $nomSansSterifs . "_" . $nom_fichier . "." . $extension;
+        if(in_array($extension, $extensions_permises)){
+            move_uploaded_file($_FILES['image_url']['tmp_name'], __DIR__ . '/' . $image_url);
+        }
+        else $image_url = "ERREUR";
+    }
+    else $image_url = "";
 
     $pdo = new PDO("sqlite:../../database/db.sqlite");
     $SQL = "UPDATE plat SET ";

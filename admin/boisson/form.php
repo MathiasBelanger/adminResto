@@ -102,7 +102,6 @@ function html_form_image_url()
 {
     $resultat = '';
     $resultat .= '<label>Image: ';
-    $resultat .= '<input type="text" name="titre" placeholder="Titre">';
     $resultat .= '<input type="file" name="image_url">';
     $resultat .= '</label>';
     return $resultat;
